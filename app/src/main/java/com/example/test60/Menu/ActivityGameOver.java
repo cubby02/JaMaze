@@ -74,24 +74,7 @@ public class ActivityGameOver extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sound.playClick();
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
-
-                String currentDiff = pref.getString("diff", null);
-                if(currentDiff == "easy") {
-                    Intent intentLoadNewActivity = new Intent(ActivityGameOver.this, ActivityEasyLevelSelector.class);
-                    startActivity(intentLoadNewActivity);
-                }else if(currentDiff == "average") {
-                    Intent intentLoadNewActivity = new Intent(ActivityGameOver.this, ActivityAverageLevelSelector.class);
-                    startActivity(intentLoadNewActivity);
-                }else if(currentDiff == "hard") {
-                    Intent intentLoadNewActivity = new Intent(ActivityGameOver.this, ActivityHardLevelSelector.class);
-                    startActivity(intentLoadNewActivity);
-                }else if(currentDiff == "extreme") {
-                    Intent intentLoadNewActivity = new Intent(ActivityGameOver.this, ActivityExtremeLevelSelector.class);
-                    startActivity(intentLoadNewActivity);
-                }else{
-                    finish();
-                }
+                finish();
             }
         });
 

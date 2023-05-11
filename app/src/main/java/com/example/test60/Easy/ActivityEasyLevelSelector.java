@@ -9,14 +9,18 @@ import android.widget.ImageButton;
 
 import com.example.test60.Menu.ActivitySelectDifficulty;
 import com.example.test60.R;
+import com.example.test60.Utilities.GlobalApplication;
+import com.example.test60.Utilities.SoundPlayer;
 
 public class ActivityEasyLevelSelector extends AppCompatActivity {
     ImageButton imgButton;
+    public SoundPlayer sound;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_easy_level_selector);
-
+        sound = ((GlobalApplication) getApplication()).getSoundPlayer();
         SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("diff", "easy");
@@ -26,7 +30,7 @@ public class ActivityEasyLevelSelector extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                sound.playClick();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("counter", 0);
@@ -40,6 +44,7 @@ public class ActivityEasyLevelSelector extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("counter", 1);
@@ -53,6 +58,7 @@ public class ActivityEasyLevelSelector extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("counter", 2);
@@ -66,6 +72,7 @@ public class ActivityEasyLevelSelector extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("counter", 3);
@@ -79,6 +86,7 @@ public class ActivityEasyLevelSelector extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("counter", 4);

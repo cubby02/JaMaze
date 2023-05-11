@@ -35,11 +35,13 @@ import com.example.test60.Extreme.ExtremeLevel4;
 import com.example.test60.Extreme.ExtremeLevel5;
 import com.example.test60.Easy.EasyLevel1;
 import com.example.test60.Easy.EasyLevel2;
+import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.QuestionAnswer;
 import com.example.test60.R;
+import com.example.test60.Utilities.SoundPlayer;
 
 public class ActivityQuestions extends AppCompatActivity implements View.OnClickListener {
-
+    public SoundPlayer sound;
     TextView questionsTextview;
     Button ans1, ans2, ans3, ans4, heart, timer, hint;
     private Button countdownButton;
@@ -59,7 +61,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
-
+        sound = ((GlobalApplication) getApplication()).getSoundPlayer();
         title = findViewById(R.id.imageView19);
         questionsTextview = findViewById(R.id.questions);
         ans1 = findViewById(R.id.ans1);
@@ -122,6 +124,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         hint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 if(counter == 0){
                     Toast.makeText(getApplicationContext(),"Hint: Uses println() to print a new line.",Toast.LENGTH_SHORT).show();
                 }else if(counter==1){
@@ -195,6 +198,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View view) {
+        sound.playClick();
         ans1.setBackgroundColor(Color.DKGRAY);
         ans2.setBackgroundColor(Color.DKGRAY);
         ans3.setBackgroundColor(Color.DKGRAY);

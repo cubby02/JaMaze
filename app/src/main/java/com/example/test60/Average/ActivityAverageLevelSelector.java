@@ -10,14 +10,17 @@ import android.widget.ImageButton;
 
 import com.example.test60.Menu.ActivitySelectDifficulty;
 import com.example.test60.R;
+import com.example.test60.Utilities.GlobalApplication;
+import com.example.test60.Utilities.SoundPlayer;
 
 public class ActivityAverageLevelSelector extends AppCompatActivity {
+    public SoundPlayer sound;
     ImageButton imgButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_average_level_selector);
-
+        sound = ((GlobalApplication) getApplication()).getSoundPlayer();
         SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("diff", "average");
@@ -27,7 +30,7 @@ public class ActivityAverageLevelSelector extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                sound.playClick();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("counter", 5);
@@ -41,6 +44,7 @@ public class ActivityAverageLevelSelector extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("counter", 6);
@@ -54,6 +58,7 @@ public class ActivityAverageLevelSelector extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("counter", 7);
@@ -67,6 +72,7 @@ public class ActivityAverageLevelSelector extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("counter", 8);
@@ -80,6 +86,7 @@ public class ActivityAverageLevelSelector extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("counter", 9);
