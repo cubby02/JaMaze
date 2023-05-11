@@ -12,12 +12,11 @@ import androidx.annotation.NonNull;
 import com.example.test60.R;
 
 public class SoundPlayer {
-    private static SoundPool soundPool;
+
 
     private MediaPlayer mainBGMusic, click;
 
     public SoundPlayer(Context context) {
-        soundPool = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
         mainBGMusic = MediaPlayer.create(context, R.raw.bgm4);
         click = MediaPlayer.create(context, R.raw.click_sound);
 

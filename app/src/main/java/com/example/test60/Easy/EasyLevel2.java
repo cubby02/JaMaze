@@ -2,6 +2,7 @@ package com.example.test60.Easy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +28,7 @@ public class EasyLevel2 extends AppCompatActivity {
     Bitmap bitmap;
     float xDown = 0, yDown = 0;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,11 +96,15 @@ public class EasyLevel2 extends AppCompatActivity {
                                     int whiteThreshold = 200;
 
                                     if (red >= yellowThreshold && green >= yellowThreshold && blue < yellowThreshold) {
+                                        mazeMap.setOnTouchListener(null);
                                         Intent intent = new Intent(getApplicationContext(), ActivityCongrats.class);
                                         startActivity(intent);
+                                        finish();
                                     } else if (red < blackThreshold && green < blackThreshold && blue < blackThreshold) {
+                                        mazeMap.setOnTouchListener(null);
                                         Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
                                         startActivity(intent);
+                                        finish();
                                     } else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold) {
                                         // Detects white color
                                     }

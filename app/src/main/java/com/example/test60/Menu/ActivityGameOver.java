@@ -34,6 +34,7 @@ import com.example.test60.Easy.EasyLevel1;
 import com.example.test60.Easy.EasyLevel2;
 import com.example.test60.R;
 import com.example.test60.Utilities.GlobalApplication;
+import com.example.test60.Utilities.MusicService;
 import com.example.test60.Utilities.SoundPlayer;
 
 public class ActivityGameOver extends AppCompatActivity {
@@ -66,7 +67,11 @@ public class ActivityGameOver extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sound.playClick();
-                finish();
+                stopService(new Intent(ActivityGameOver.this, MusicService.class));
+                Intent intent = new Intent(ActivityGameOver.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+
             }
         });
 
@@ -187,8 +192,9 @@ public class ActivityGameOver extends AppCompatActivity {
     }
 
 
-
     @Override
-    public void onBackPressed() {
+    protected void onPause() {
+        super.onPause();
+        sound.stopMainMenuSound();
     }
 }

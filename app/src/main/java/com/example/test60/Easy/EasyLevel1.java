@@ -100,10 +100,12 @@ public class EasyLevel1 extends AppCompatActivity {
                                         editor.putInt("lives", 3);
                                         editor.commit();
 
+                                        mazeMap.setOnTouchListener(null);
                                         Intent intent = new Intent(getApplicationContext(), ActivityCongrats.class);
                                         startActivity(intent);
                                         finish();
                                     } else if (red < blackThreshold && green < blackThreshold && blue < blackThreshold) {
+                                        mazeMap.setOnTouchListener(null);
                                         Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
                                         startActivity(intent);
                                         finish();

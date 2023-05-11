@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Test60">
-
+        <service android:name=".Utilities.MusicService" />
 
         <activity
             android:name=".Hard.HardLevel2"

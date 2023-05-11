@@ -13,6 +13,7 @@ import com.example.test60.Hard.ActivityHardLevelSelector;
 import com.example.test60.Extreme.ActivityExtremeLevelSelector;
 import com.example.test60.R;
 import com.example.test60.Utilities.GlobalApplication;
+import com.example.test60.Utilities.MusicService;
 import com.example.test60.Utilities.SoundPlayer;
 
 public class ActivityCongrats extends AppCompatActivity {
@@ -37,6 +38,7 @@ public class ActivityCongrats extends AppCompatActivity {
                 sound.playClick();
                 Intent intent = new Intent(getApplicationContext(), ActivityQuestions.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -53,7 +55,10 @@ public class ActivityCongrats extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sound.playClick();
-                finish();
+                stopService(new Intent(ActivityCongrats.this, MusicService.class));
+                Intent intent = new Intent(ActivityCongrats.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
 
@@ -61,22 +66,7 @@ public class ActivityCongrats extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sound.playClick();
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
-
-                String currentDiff = pref.getString("diff", null);
-                if(currentDiff == "easy") {
-                    Intent intentLoadNewActivity = new Intent(ActivityCongrats.this, ActivityEasyLevelSelector.class);
-                    startActivity(intentLoadNewActivity);
-                }else if(currentDiff == "average") {
-                    Intent intentLoadNewActivity = new Intent(ActivityCongrats.this, ActivityEasyLevelSelector.class);
-                    startActivity(intentLoadNewActivity);
-                }else if(currentDiff == "hard") {
-                    Intent intentLoadNewActivity = new Intent(ActivityCongrats.this, ActivityHardLevelSelector.class);
-                    startActivity(intentLoadNewActivity);
-                }else if(currentDiff == "extreme") {
-                    Intent intentLoadNewActivity = new Intent(ActivityCongrats.this, ActivityExtremeLevelSelector.class);
-                    startActivity(intentLoadNewActivity);
-                }
+                finish();
             }
         });
 

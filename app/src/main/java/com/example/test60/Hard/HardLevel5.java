@@ -91,11 +91,15 @@ public class HardLevel5 extends AppCompatActivity {
                                     int whiteThreshold = 200;
 
                                     if (red >= yellowThreshold && green >= yellowThreshold && blue < yellowThreshold) {
+                                        mazeMap.setOnTouchListener(null);
                                         Intent intent = new Intent(getApplicationContext(), ActivityCongrats.class);
                                         startActivity(intent);
+                                        finish();
                                     } else if (red < blackThreshold && green < blackThreshold && blue < blackThreshold) {
+                                        mazeMap.setOnTouchListener(null);
                                         Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
                                         startActivity(intent);
+                                        finish();
                                     } else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold) {
                                         // Detects white color
                                     }

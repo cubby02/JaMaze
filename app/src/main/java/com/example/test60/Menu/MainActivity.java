@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 
 import com.example.test60.R;
 import com.example.test60.Utilities.GlobalApplication;
+import com.example.test60.Utilities.MusicService;
 import com.example.test60.Utilities.SoundPlayer;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,11 +24,15 @@ public class MainActivity extends AppCompatActivity {
     final float defaultVolume = 0.5f;
     float currentVolume;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sound = ((GlobalApplication) getApplication()).getSoundPlayer();
+
+        Intent intent = new Intent(this, MusicService.class);
+        startService(intent);
 
         // Retrieve the saved volume from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
@@ -73,15 +78,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        sound.playMainMenuSound();
-    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        sound.stopMainMenuSound();
-    }
+
+
 }
