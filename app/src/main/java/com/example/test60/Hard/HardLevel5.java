@@ -31,8 +31,8 @@ public class HardLevel5 extends AppCompatActivity {
         setContentView(R.layout.activity_hard_level_5);
 
 
-        chartt= findViewById(R.id.chartt15);
-        mazeMap = findViewById(R.id.mazeMap15);
+        chartt= findViewById(R.id.chartt);
+        mazeMap = findViewById(R.id.mazeMap);
 
 
 

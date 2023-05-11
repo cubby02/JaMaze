@@ -32,8 +32,8 @@ public class EasyLevel4 extends AppCompatActivity {
         setContentView(R.layout.activity_easy_level_4);
 
 
-        chartt= findViewById(R.id.chartt4);
-        mazeMap = findViewById(R.id.mazeMap4);
+        chartt= findViewById(R.id.chartt);
+        mazeMap = findViewById(R.id.mazeMap);
 
 
         //setting character config

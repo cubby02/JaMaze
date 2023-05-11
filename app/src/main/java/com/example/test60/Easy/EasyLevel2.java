@@ -35,8 +35,8 @@ public class EasyLevel2 extends AppCompatActivity {
         setContentView(R.layout.activity_easy_level_2);
 
 
-        chartt= findViewById(R.id.chartt2);
-        mazeMap = findViewById(R.id.mazeMap2);
+        chartt= findViewById(R.id.chartt);
+        mazeMap = findViewById(R.id.mazeMap);
 
         //setting character config
         SharedPreferences pref = getApplicationContext().getSharedPreferences("settings", MODE_PRIVATE);

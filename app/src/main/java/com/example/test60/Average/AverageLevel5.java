@@ -32,8 +32,8 @@ public class AverageLevel5 extends AppCompatActivity {
         setContentView(R.layout.activity_average_level_5);
 
 
-        chartt= findViewById(R.id.chartt10);
-        mazeMap = findViewById(R.id.mazeMap10);
+        chartt= findViewById(R.id.chartt);
+        mazeMap = findViewById(R.id.mazeMap);
 
 
 //setting character config

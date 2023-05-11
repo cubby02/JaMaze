@@ -31,8 +31,8 @@ public class ExtremeLevel5 extends AppCompatActivity {
         setContentView(R.layout.activity_extreme_level_5);
 
 
-        chartt= findViewById(R.id.chartt20);
-        mazeMap = findViewById(R.id.mazeMap20);
+        chartt= findViewById(R.id.chartt);
+        mazeMap = findViewById(R.id.mazeMap);
 
 
         //setting character config

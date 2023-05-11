@@ -30,8 +30,8 @@ public class ExtremeLevel1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_extreme_level_1);
 
-        chartt= findViewById(R.id.chartt16);
-        mazeMap = findViewById(R.id.mazeMap16);
+        chartt= findViewById(R.id.chartt);
+        mazeMap = findViewById(R.id.mazeMap);
 
         //setting character config
         SharedPreferences pref = getApplicationContext().getSharedPreferences("settings", MODE_PRIVATE);

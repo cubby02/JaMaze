@@ -32,8 +32,8 @@ public class HardLevel2 extends AppCompatActivity {
         setContentView(R.layout.activity_hard_level_2);
 
 
-        chartt= findViewById(R.id.chartt12);
-        mazeMap = findViewById(R.id.mazeMap12);
+        chartt= findViewById(R.id.chartt);
+        mazeMap = findViewById(R.id.mazeMap);
 
 
         //setting character config
