@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Easy.ActivityEasyLevelSelector"
-    android:background="@drawable/bg2">
+    android:background="@drawable/select_difficulty_bg">
 
 
     <LinearLayout
@@ -16,10 +16,17 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/imageView7"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/jamaze_logo" />
+
+        <ImageView
             android:id="@+id/imageView17"
             android:layout_width="match_parent"
-            android:layout_height="82dp"
-            app:srcCompat="@drawable/easy_" />
+            android:layout_height="wrap_content"
+            android:src="@drawable/easy_flag"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,20 +38,20 @@
                 android:id="@+id/imageButton8"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:background="@drawable/one" />
+                android:background="@drawable/btn_lvl_1" />
 
             <ImageButton
                 android:id="@+id/imageButton9"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_margin="15dp"
-                android:background="@drawable/two" />
+                android:background="@drawable/btn_lvl_2" />
 
             <ImageButton
                 android:id="@+id/imageButton10"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:background="@drawable/three" />
+                android:background="@drawable/btn_lvl_3" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,13 +65,13 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginRight="15dp"
-                android:background="@drawable/four" />
+                android:background="@drawable/btn_lvl_4" />
 
             <ImageButton
                 android:id="@+id/imageButton12"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:background="@drawable/five" />
+                android:background="@drawable/btn_lvl_5" />
         </LinearLayout>
 
     </LinearLayout>

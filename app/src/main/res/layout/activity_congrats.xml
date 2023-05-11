@@ -1,83 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/congrats_bg"
+    tools:context=".Menu.ActivityCongrats">
 
-    <LinearLayout
+    <pl.droidsonroids.gif.GifImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:src="@drawable/confetti"/>
 
-        <RelativeLayout
-            android:id="@+id/layout2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg2"
-            tools:context=".Easy.EasyLevel1">
-
-            <ImageButton
+    <ImageView
                 android:id="@+id/CONGRATS"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_marginTop="200dp"
-                android:background="@drawable/congrats"
-                android:contentDescription="you've passed the maze. now, proceed to the question to unlock the next level. Good luck!" />
+                android:layout_marginTop="120dp"
+                android:src="@drawable/congrats_text"/>
 
             <TextView
                 android:id="@+id/msg2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="300dp"
-                android:layout_marginEnd="50dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/CONGRATS"
+                android:layout_marginEnd="30dp"
                 android:gravity="center"
+                android:textSize="18sp"
                 android:text="You've passed the maze. Now, proceed to the question to unlock the next level. Good luck!"
                 android:textColor="#7EADCB"
                 android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/con"
-                android:layout_width="200dp"
-                android:layout_height="43dp"
+                android:layout_width="wrap_content"
+                android:scaleType="fitXY"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
-                android:layout_marginTop="390dp"
-                android:background="@drawable/resource_continue" />
+                android:layout_marginTop="50dp"
+                android:layout_below="@id/msg2"
+                android:src="@drawable/continue_btn" />
 
             <LinearLayout
+                android:layout_below="@id/con"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/con"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:gravity="center">
 
                 <ImageButton
                     android:id="@+id/homeBtn"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/homr"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/home_btn"
                     android:contentDescription="home" />
 
                 <ImageButton
                     android:id="@+id/settingsBtn"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/settings_btn"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
                     android:background="@drawable/sett"
                     android:contentDescription="settings" />
 
                 <ImageButton
                     android:id="@+id/backBtn3"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/back"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/back_btn"
                     android:contentDescription="press to back" />
 
             </LinearLayout>
 
-        </RelativeLayout>
-
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
