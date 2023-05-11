@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg2"
+            tools:context=".Easy.EasyLevel1">
+
+            <ImageButton
+                android:id="@+id/CONGRATS"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="200dp"
+                android:background="@drawable/congrats"
+                android:contentDescription="you've passed the maze. now, proceed to the question to unlock the next level. Good luck!" />
+
+            <TextView
+                android:id="@+id/msg2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="300dp"
+                android:layout_marginEnd="50dp"
+                android:gravity="center"
+                android:text="You've passed the maze. Now, proceed to the question to unlock the next level. Good luck!"
+                android:textColor="#7EADCB"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/con"
+                android:layout_width="200dp"
+                android:layout_height="43dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="390dp"
+                android:background="@drawable/resource_continue" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+
+                android:layout_marginTop="220dp"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/homeBtn"
+                    android:layout_width="48dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/homr"
+                    android:contentDescription="home" />
+
+                <ImageButton
+                    android:id="@+id/settingsBtn"
+                    android:layout_width="48dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/sett"
+                    android:contentDescription="settings" />
+
+                <ImageButton
+                    android:id="@+id/backBtn3"
+                    android:layout_width="48dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/back"
+                    android:contentDescription="press to back" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

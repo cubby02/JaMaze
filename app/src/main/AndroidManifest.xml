@@ -12,100 +12,100 @@
 
 
         <activity
-            android:name=".MainActivity21"
+            android:name=".Hard.HardLevel2"
             android:exported="false" />
         <activity
-            android:name=".MainActivity20"
+            android:name=".Hard.HardLevel1"
             android:exported="false" />
         <activity
-            android:name=".MainActivity19"
+            android:name=".Hard.ActivityHardLevelSelector"
             android:exported="false" />
         <activity
-            android:name=".MainActivity18"
+            android:name=".Average.AverageLevel5"
             android:exported="false" />
         <activity
-            android:name=".MainActivity17"
+            android:name=".Average.AverageLevel4"
             android:exported="false" />
         <activity
-            android:name=".MainActivity16"
+            android:name=".Average.AverageLevel3"
             android:exported="false" />
         <activity
-            android:name=".MainActivity15"
+            android:name=".Average.AverageLevel2"
             android:exported="false" />
         <activity
-            android:name=".MainActivity14"
+            android:name=".Average.AverageLevel1"
             android:exported="false" />
         <activity
-            android:name=".MainActivity13"
+            android:name=".Average.ActivityAverageLevelSelector"
             android:exported="false" />
         <activity
-            android:name=".MainActivity12"
+            android:name=".Easy.EasyLevel5"
             android:exported="false" />
         <activity
-            android:name=".MainActivity11"
+            android:name=".Easy.EasyLevel4"
             android:exported="false" />
         <activity
-            android:name=".MainActivity10"
+            android:name=".Easy.EasyLevel3"
             android:exported="false" />
         <activity
-            android:name=".MainActivity9"
+            android:name=".Easy.EasyLevel2"
             android:exported="false" />
         <activity
-            android:name=".MainActivity8"
+            android:name=".Menu.ActivityQuestions"
             android:exported="false" />
         <activity
             android:name=".MainActivity7"
             android:exported="false" />
         <activity
-            android:name=".MainActivity6"
+            android:name=".Easy.EasyLevel1"
             android:exported="false" />
         <activity
-            android:name=".MainActivity5"
+            android:name=".Menu.ActivitySettings"
             android:exported="false" />
         <activity
-            android:name=".MainActivity4"
+            android:name=".Menu.ActivityAbout"
             android:exported="false" />
         <activity
-            android:name=".MainActivity3"
+            android:name=".Easy.ActivityEasyLevelSelector"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".Menu.ActivitySelectDifficulty"
             android:exported="false" />
         <activity
-            android:name=".MainActivity22"
+            android:name=".Hard.HardLevel3"
             android:exported="false" />
         <activity
-            android:name=".MainActivity23"
+            android:name=".Hard.HardLevel4"
             android:exported="false" />
         <activity
-            android:name=".MainActivity24"
+            android:name=".Hard.HardLevel5"
             android:exported="false" />
         <activity
-            android:name=".MainActivity25"
+            android:name=".Extreme.ExtremeLevel1"
             android:exported="false" />
         <activity
-            android:name=".MainActivity26"
+            android:name=".Extreme.ActivityExtremeLevelSelector"
             android:exported="false" />
         <activity
-            android:name=".MainActivity27"
+            android:name=".Extreme.ExtremeLevel2"
             android:exported="false" />
         <activity
-            android:name=".MainActivity28"
+            android:name=".Extreme.ExtremeLevel3"
             android:exported="false" />
         <activity
-            android:name=".MainActivity29"
+            android:name=".Extreme.ExtremeLevel4"
             android:exported="false" />
         <activity
-            android:name=".MainActivity30"
+            android:name=".Extreme.ExtremeLevel5"
             android:exported="false" />
         <activity
-            android:name=".layout"
+            android:name=".Menu.ActivityGameOver"
             android:exported="false" />
         <activity
-            android:name=".layout2"
+            android:name=".Menu.ActivityCongrats"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Menu.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
