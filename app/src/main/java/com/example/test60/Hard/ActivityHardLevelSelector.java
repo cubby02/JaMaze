@@ -93,8 +93,9 @@ public class ActivityHardLevelSelector extends AppCompatActivity {
 
     }
 
+    @Override
     public void onBackPressed() {
-        Intent intentLoadNewActivity = new Intent(ActivityHardLevelSelector.this, ActivitySelectDifficulty.class);
-        startActivity(intentLoadNewActivity);
+        super.onBackPressed();
+        finish();
     }
 }

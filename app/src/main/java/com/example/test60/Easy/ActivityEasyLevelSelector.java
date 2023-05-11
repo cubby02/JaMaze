@@ -92,7 +92,7 @@ public class ActivityEasyLevelSelector extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intentLoadNewActivity = new Intent(ActivityEasyLevelSelector.this, ActivitySelectDifficulty.class);
-        startActivity(intentLoadNewActivity);
+        super.onBackPressed();
+        finish();
     }
 }

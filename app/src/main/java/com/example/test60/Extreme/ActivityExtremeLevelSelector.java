@@ -99,7 +99,7 @@ public class ActivityExtremeLevelSelector extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intentLoadNewActivity = new Intent(ActivityExtremeLevelSelector.this, ActivitySelectDifficulty.class);
-        startActivity(intentLoadNewActivity);
+        super.onBackPressed();
+        finish();
     }
 }

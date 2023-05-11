@@ -2,6 +2,7 @@ package com.example.test60.Average;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import com.example.test60.Menu.ActivityCongrats;
 import com.example.test60.Menu.ActivityGameOver;
 import com.example.test60.R;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class AverageLevel5 extends AppCompatActivity {
 
@@ -142,8 +144,24 @@ public class AverageLevel5 extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent intentLoadNewActivity = new Intent(AverageLevel5.this, ActivityAverageLevelSelector.class);
-        startActivity(intentLoadNewActivity);
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("Caution: Reset Game Progress on Exit")
+                .setMessage("Are you sure you want to exit? Your progress will be reset to start.")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Handle Yes button click
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Handle No button click
+                        return;
+                    }
+                })
+                .show();
     }
 
 }

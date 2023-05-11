@@ -59,7 +59,7 @@ public class ActivitySelectDifficulty extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intentLoadNewActivity = new Intent(ActivitySelectDifficulty.this, MainActivity.class);
-        startActivity(intentLoadNewActivity);
+        super.onBackPressed();
+        finish();
     }
 }
