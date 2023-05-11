@@ -161,4 +161,9 @@ public class ActivitySettings extends AppCompatActivity {
 
 
         }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
+}

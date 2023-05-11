@@ -11,29 +11,17 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.test60.R;
+import com.example.test60.Utilities.SoundPlayer;
 
 public class MainActivity extends AppCompatActivity {
     ImageButton imgButton;
+    private SoundPlayer sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.bgm1);
-
-        // If MediaPlayer object is null, create and start it
-
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("music", MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-
-
-            mediaPlayer.setLooping(true);
-            mediaPlayer.start();
-
-
-
+        sound = new SoundPlayer(this);
 
         imgButton = (ImageButton) findViewById(R.id.imageButton);
         imgButton.setOnClickListener(new View.OnClickListener() {
@@ -62,5 +50,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sound.playMainMenuSound();
     }
 }
