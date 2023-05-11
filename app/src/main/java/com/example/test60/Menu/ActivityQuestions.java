@@ -42,7 +42,7 @@ import com.example.test60.Utilities.SoundPlayer;
 
 public class ActivityQuestions extends AppCompatActivity implements View.OnClickListener {
     public SoundPlayer sound;
-    TextView questionsTextview;
+    TextView questionsTextview,txtLevel;
     Button ans1, ans2, ans3, ans4, heart, timer, hint;
     private Button countdownButton;
     private CountDownTimer countDownTimer;
@@ -72,6 +72,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         timer = findViewById(R.id.timer);
         hint = findViewById(R.id.hint);
         countdownButton = findViewById(R.id.timer);
+        txtLevel = findViewById(R.id.txtLevel);
 
         ans1.setOnClickListener(this);
         ans2.setOnClickListener(this);
