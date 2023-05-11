@@ -42,6 +42,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
                 android:layout_below="@id/msg2"
+                android:background="@android:color/transparent"
                 android:src="@drawable/continue_btn" />
 
             <LinearLayout
@@ -53,25 +54,27 @@
 
                 <ImageButton
                     android:id="@+id/homeBtn"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/home_btn"
                     android:contentDescription="home" />
 
                 <ImageButton
                     android:id="@+id/settingsBtn"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/settings_btn"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
-                    android:background="@drawable/sett"
+                    android:background="@android:color/transparent"
                     android:contentDescription="settings" />
 
                 <ImageButton
                     android:id="@+id/backBtn3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/back_btn"
                     android:contentDescription="press to back" />
 
