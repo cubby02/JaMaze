@@ -18,11 +18,13 @@ import android.content.ContentResolver;
 import android.view.Window;
 
 import com.example.test60.R;
+import com.example.test60.Utilities.GlobalApplication;
+import com.example.test60.Utilities.SoundPlayer;
 
 public class ActivitySettings extends AppCompatActivity {
 
     ImageButton f1,f2,f3,m1,m2,m3;
-    SeekBar volumebtn;
+    SeekBar musiBar;
     ImageView chartt,chartt2,chartt3,chartt4,chartt5,chartt6,chartt7,chartt8,chartt9,chartt10,chartt11,chartt12,chartt13,chartt14,chartt15,chartt16,chartt17,chartt18,chartt19,chartt20;
 
 
@@ -33,6 +35,12 @@ public class ActivitySettings extends AppCompatActivity {
     //Window object, that will store a reference to the current window
     private Window window;
     public MediaPlayer mediaPlayer;
+
+
+
+    final float maxVolume = 1.0f;
+    final float defaultVolume = 0.5f;
+    float currentVolume;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,22 +50,18 @@ public class ActivitySettings extends AppCompatActivity {
         SharedPreferences.Editor editor = pref.edit();
 
 
-
-
-
         f1 = findViewById(R.id.charfemale1);
         f2 = findViewById(R.id.charfemale2);
         f3 = findViewById(R.id.charfemale3);
         m1 = findViewById(R.id.charmale1);
         m2 = findViewById(R.id.charmale2);
         m3 = findViewById(R.id.charmale3);
-        volumebtn = findViewById(R.id.musicBar);
+        musiBar = findViewById(R.id.musicBar);
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.activity_easy_level_1, null);
 
         chartt = view.findViewById(R.id.chartt);
-
 
         f1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,19 +137,18 @@ public class ActivitySettings extends AppCompatActivity {
             }
         });
 
+        SoundPlayer soundPlayer = ((GlobalApplication) getApplication()).getSoundPlayer();
 
-        volumebtn.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+        currentVolume = defaultVolume;
+        musiBar.setProgress((int)(currentVolume / maxVolume * 100));
+        musiBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
 
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // Calculate volume value based on progress
-                int maxVolume = 100; // Maximum volume value
-                int volume = progress * maxVolume / 100; // Calculate volume based on progress
-
-                // Update volume using AudioManager
-                AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, 0); // Update music stream volume to calculated value
+                currentVolume = progress / 100f * maxVolume;
+                soundPlayer.setVolume(currentVolume);
             }
 
             @Override
