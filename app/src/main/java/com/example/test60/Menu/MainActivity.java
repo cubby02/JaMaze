@@ -19,16 +19,34 @@ public class MainActivity extends AppCompatActivity {
     ImageButton imgButton;
     public SoundPlayer sound;
 
+    final float maxVolume = 1.0f;
+    final float defaultVolume = 0.5f;
+    float currentVolume;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sound = ((GlobalApplication) getApplication()).getSoundPlayer();
 
+        // Retrieve the saved volume from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        float selectedVolume = sharedPreferences.getFloat("selectedVolume", defaultVolume);
+
+
+        if (!Float.isNaN(selectedVolume)) {
+            currentVolume = selectedVolume;
+        } else {
+            currentVolume = defaultVolume;
+        }
+
+        sound.setMainVolume(currentVolume);
+
         imgButton = (ImageButton) findViewById(R.id.imageButton);
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 Intent intentLoadNewActivity = new Intent(MainActivity.this, ActivitySelectDifficulty.class);
                 startActivity(intentLoadNewActivity);
             }
@@ -38,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 Intent intentLoadNewActivity = new Intent(MainActivity.this, ActivitySettings.class);
                 startActivity(intentLoadNewActivity);
             }

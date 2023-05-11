@@ -33,11 +33,14 @@ import com.example.test60.Extreme.ExtremeLevel5;
 import com.example.test60.Easy.EasyLevel1;
 import com.example.test60.Easy.EasyLevel2;
 import com.example.test60.R;
+import com.example.test60.Utilities.GlobalApplication;
+import com.example.test60.Utilities.SoundPlayer;
 
 public class ActivityGameOver extends AppCompatActivity {
 
     ImageButton setting, home, diff, tryAgain;
 
+    public SoundPlayer sound;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +50,13 @@ public class ActivityGameOver extends AppCompatActivity {
         home = findViewById(R.id.homeBtn);
         diff = findViewById(R.id.backBtn3);
         tryAgain = findViewById(R.id.tryAgain);
+        sound = ((GlobalApplication) getApplication()).getSoundPlayer();
 
 
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                sound.playClick();
                 Intent intentLoadNewActivity = new Intent(ActivityGameOver.this, ActivitySettings.class);
                 startActivity(intentLoadNewActivity);
             }
@@ -61,15 +65,15 @@ public class ActivityGameOver extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentLoadNewActivity = new Intent(ActivityGameOver.this, MainActivity.class);
-                startActivity(intentLoadNewActivity);
+                sound.playClick();
+                finish();
             }
         });
 
         diff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                sound.playClick();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
 
                 String currentDiff = pref.getString("diff", null);
@@ -86,8 +90,7 @@ public class ActivityGameOver extends AppCompatActivity {
                     Intent intentLoadNewActivity = new Intent(ActivityGameOver.this, ActivityExtremeLevelSelector.class);
                     startActivity(intentLoadNewActivity);
                 }else{
-                    Intent intentLoadNewActivity = new Intent(ActivityGameOver.this, MainActivity.class);
-                    startActivity(intentLoadNewActivity);
+                    finish();
                 }
             }
         });

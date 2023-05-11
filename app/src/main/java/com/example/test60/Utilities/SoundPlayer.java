@@ -13,23 +13,31 @@ import com.example.test60.R;
 
 public class SoundPlayer {
     private static SoundPool soundPool;
-    private static int clickButton;
-    private MediaPlayer mainBGMusic;
+
+    private MediaPlayer mainBGMusic, click;
 
     public SoundPlayer(Context context) {
         soundPool = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
-        //clickButton = soundPool.load(context, R.raw.sfx_shieldup, 1);
-        mainBGMusic = MediaPlayer.create(context, R.raw.bgm2);
+        mainBGMusic = MediaPlayer.create(context, R.raw.bgm4);
+        click = MediaPlayer.create(context, R.raw.click_sound);
 
+        mainBGMusic.setLooping(true);
     }
     public void playMainMenuSound(){
         mainBGMusic.start();
     }
 
+    public void playClick(){
+        click.start();
+    }
+
     public void stopMainMenuSound() { mainBGMusic.stop(); }
 
-    public void setVolume(float volume) {
+    public void setMainVolume(float volume) {
         mainBGMusic.setVolume(volume, volume);
     }
 
+    public void setClickVolume(float volume) {
+        click.setVolume(volume, volume);
+    }
 }

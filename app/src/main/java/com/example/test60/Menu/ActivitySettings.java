@@ -24,7 +24,7 @@ import com.example.test60.Utilities.SoundPlayer;
 public class ActivitySettings extends AppCompatActivity {
 
     ImageButton f1,f2,f3,m1,m2,m3;
-    SeekBar musiBar;
+    SeekBar musiBar, soundBar;
     ImageView chartt,chartt2,chartt3,chartt4,chartt5,chartt6,chartt7,chartt8,chartt9,chartt10,chartt11,chartt12,chartt13,chartt14,chartt15,chartt16,chartt17,chartt18,chartt19,chartt20;
 
 
@@ -41,6 +41,10 @@ public class ActivitySettings extends AppCompatActivity {
     final float maxVolume = 1.0f;
     final float defaultVolume = 0.5f;
     float currentVolume;
+
+    final float maxVolume2 = 1.0f;
+    final float defaultVolume2 = 0.5f;
+    float currentVolume2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,16 +143,34 @@ public class ActivitySettings extends AppCompatActivity {
 
         SoundPlayer soundPlayer = ((GlobalApplication) getApplication()).getSoundPlayer();
 
+        // Retrieve the saved volume from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        float selectedVolume = sharedPreferences.getFloat("selectedVolume", defaultVolume);
 
-        currentVolume = defaultVolume;
+
+        if (!Float.isNaN(selectedVolume)) {
+            currentVolume = selectedVolume;
+        } else {
+            currentVolume = defaultVolume;
+        }
+
         musiBar.setProgress((int)(currentVolume / maxVolume * 100));
+        soundPlayer.setMainVolume(currentVolume);
+
         musiBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-
-
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 currentVolume = progress / 100f * maxVolume;
-                soundPlayer.setVolume(currentVolume);
+                soundPlayer.setMainVolume(currentVolume);
+
+                // Save the selected volume to SharedPreferences
+                // Check if the shared preferences are not null before saving the volume
+                SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                if (sharedPreferences != null) {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putFloat("selectedVolume", currentVolume);
+                    editor.apply();
+                }
             }
 
             @Override
@@ -162,6 +184,48 @@ public class ActivitySettings extends AppCompatActivity {
             }
         });
 
+        // Retrieve the saved volume from SharedPreferences
+        SharedPreferences sharedPreferences2 = getSharedPreferences("MyPreferences2", MODE_PRIVATE);
+        float selectedVolume2 = sharedPreferences2.getFloat("selectedVolume2", defaultVolume2);
+
+
+        if (!Float.isNaN(selectedVolume2)) {
+            currentVolume2 = selectedVolume2;
+        } else {
+            currentVolume2 = defaultVolume2;
+        }
+
+        soundBar = findViewById(R.id.soundBar);
+        soundBar.setProgress((int)(currentVolume2 / maxVolume2 * 100));
+
+        soundBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                currentVolume2 = progress / 100f * maxVolume2;
+                soundPlayer.setClickVolume(currentVolume2);
+
+                // Save the selected volume to SharedPreferences
+                // Check if the shared preferences are not null before saving the volume
+                SharedPreferences sharedPreferences2 = getSharedPreferences("MyPreferences2", MODE_PRIVATE);
+                if (sharedPreferences2 != null) {
+                    SharedPreferences.Editor editor2 = sharedPreferences2.edit();
+                    editor2.putFloat("selectedVolume2", currentVolume2);
+                    editor2.apply();
+                }
+
+                soundPlayer.playClick();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         }
 

@@ -12,21 +12,26 @@ import com.example.test60.Average.ActivityAverageLevelSelector;
 import com.example.test60.Hard.ActivityHardLevelSelector;
 import com.example.test60.Extreme.ActivityExtremeLevelSelector;
 import com.example.test60.R;
+import com.example.test60.Utilities.GlobalApplication;
+import com.example.test60.Utilities.SoundPlayer;
 
 public class ActivitySelectDifficulty extends AppCompatActivity {
     ImageButton imgButton;
+
+    public SoundPlayer sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_difficulty);
 
-
+        sound = ((GlobalApplication) getApplication()).getSoundPlayer();
 
         imgButton = (ImageButton) findViewById(R.id.imageButton3);
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 Intent intentLoadNewActivity = new Intent(ActivitySelectDifficulty.this, ActivityEasyLevelSelector.class);
                 startActivity(intentLoadNewActivity);
             }
@@ -35,6 +40,7 @@ public class ActivitySelectDifficulty extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 Intent intentLoadNewActivity = new Intent(ActivitySelectDifficulty.this, ActivityAverageLevelSelector.class);
                 startActivity(intentLoadNewActivity);
             }
@@ -43,6 +49,7 @@ public class ActivitySelectDifficulty extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 Intent intentLoadNewActivity = new Intent(ActivitySelectDifficulty.this, ActivityHardLevelSelector.class);
                 startActivity(intentLoadNewActivity);
             }
@@ -51,6 +58,7 @@ public class ActivitySelectDifficulty extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sound.playClick();
                 Intent intentLoadNewActivity = new Intent(ActivitySelectDifficulty.this, ActivityExtremeLevelSelector.class);
                 startActivity(intentLoadNewActivity);
             }
