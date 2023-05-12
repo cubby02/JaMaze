@@ -40,10 +40,14 @@ import com.example.test60.Utilities.QuestionAnswer;
 import com.example.test60.R;
 import com.example.test60.Utilities.SoundPlayer;
 
+import java.util.Random;
+
 public class ActivityQuestions extends AppCompatActivity implements View.OnClickListener {
     public SoundPlayer sound;
     TextView questionsTextview,txtLevel;
-    Button ans1, ans2, ans3, ans4, heart, timer, hint;
+    Button ans1, ans2, ans3, ans4, timer, hint;
+
+    ImageView heart1, heart2, heart3;
     private Button countdownButton;
     private CountDownTimer countDownTimer;
     private int countdownValue = 10;
@@ -68,7 +72,9 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         ans2 = findViewById(R.id.ans2);
         ans3 = findViewById(R.id.ans3);
         ans4 = findViewById(R.id.ans4);
-        heart = findViewById(R.id.heart);
+        heart1 = findViewById(R.id.heart1);
+        heart2 = findViewById(R.id.heart2);
+        heart3 = findViewById(R.id.heart3);
         timer = findViewById(R.id.timer);
         hint = findViewById(R.id.hint);
         countdownButton = findViewById(R.id.timer);
@@ -88,35 +94,50 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
 
         //level name
         if(counter == 0){
-            title.setImageResource(R.drawable.level1title);
+            title.setImageResource(R.drawable.easy_text);
+            txtLevel.setText("LEVEL 1");
         }else if(counter == 1){
-            title.setImageResource(R.drawable.level2title);
+            title.setImageResource(R.drawable.easy_text);
+            txtLevel.setText("LEVEL 2");
         }else if(counter == 2){
-            title.setImageResource(R.drawable.level3title);
+            title.setImageResource(R.drawable.easy_text);
+            txtLevel.setText("LEVEL 3");
         }else if(counter == 3){
-            title.setImageResource(R.drawable.level4title);
+            title.setImageResource(R.drawable.easy_text);
+            txtLevel.setText("LEVEL 4");
         }else if(counter == 4){
-            title.setImageResource(R.drawable.level5title);
+            title.setImageResource(R.drawable.easy_text);
+            txtLevel.setText("LEVEL 5");
         }else if(counter == 5){
-            title.setImageResource(R.drawable.level1title);
+            title.setImageResource(R.drawable.average_text);
+            txtLevel.setText("LEVEL 1");
         }else if(counter == 6){
-            title.setImageResource(R.drawable.level2title);
+            title.setImageResource(R.drawable.average_text);
+            txtLevel.setText("LEVEL 2");
         }else if(counter == 7){
-            title.setImageResource(R.drawable.level3title);
+            title.setImageResource(R.drawable.average_text);
+            txtLevel.setText("LEVEL 3");
         }else if(counter == 8){
-            title.setImageResource(R.drawable.level4title);
+            title.setImageResource(R.drawable.average_text);
+            txtLevel.setText("LEVEL 4");
         }else if(counter == 9){
-            title.setImageResource(R.drawable.level5title);
+            title.setImageResource(R.drawable.average_text);
+            txtLevel.setText("LEVEL 5");
         }else if(counter == 10){
-            title.setImageResource(R.drawable.level1title);
+            title.setImageResource(R.drawable.hard_text);
+            txtLevel.setText("LEVEL 1");
         }else if(counter == 11){
-            title.setImageResource(R.drawable.level2title);
+            title.setImageResource(R.drawable.average_text);
+            txtLevel.setText("LEVEL 2");
         }else if(counter == 12){
-            title.setImageResource(R.drawable.level3title);
+            title.setImageResource(R.drawable.average_text);
+            txtLevel.setText("LEVEL 3");
         }else if(counter == 13){
-            title.setImageResource(R.drawable.level4title);
+            title.setImageResource(R.drawable.average_text);
+            txtLevel.setText("LEVEL 4");
         }else if(counter == 14){
-            title.setImageResource(R.drawable.level5title);
+            title.setImageResource(R.drawable.average_text);
+            txtLevel.setText("LEVEL 5");
         }
 
         loadQuestion();
@@ -200,16 +221,16 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         sound.playClick();
-        ans1.setBackgroundColor(Color.DKGRAY);
-        ans2.setBackgroundColor(Color.DKGRAY);
-        ans3.setBackgroundColor(Color.DKGRAY);
-        ans4.setBackgroundColor(Color.DKGRAY);
+        ans1.setAlpha(0.4f);
+        ans2.setAlpha(0.4f);
+        ans3.setAlpha(0.4f);
+        ans4.setAlpha(0.4f);
 
 
         Button clickedButton = (Button) view;
         if (clickedButton.getId() == R.id.ans1 || clickedButton.getId() == R.id.ans2 || clickedButton.getId() == R.id.ans3 || clickedButton.getId() == R.id.ans4) {
             selectedAnswer = clickedButton.getText().toString();
-            clickedButton.setBackgroundColor(Color.BLUE);
+            clickedButton.setAlpha(1.0f);
 
             SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
             SharedPreferences.Editor editor = pref.edit();
@@ -223,15 +244,12 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
                 editor.putInt("counter",x);
                 editor.commit();
 
-
-
                 String diff = pref.getString("diff", null);
 
                 currentQuestionIndex = x;
 
                 if(diff.trim().equals("easy")){
                     if(counter == 0){
-
                         Intent intent = new Intent(getApplicationContext(), EasyLevel2.class);
                         startActivity(intent);
                     }else if(counter==1){
@@ -317,13 +335,11 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
                     Intent intent = new Intent(getApplicationContext(), ActivitySelectDifficulty.class);
                     startActivity(intent);
                 }
+                countDownTimer.cancel();
+                finish();
             }else{
                 liveCount();
-
             }
-
-
-
         }
     }
 
@@ -343,9 +359,12 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         editor.commit();
 
         if(x==2){
-            heart.setText("\u2764\uFE0F\u2764\uFE0F");
+            //heart.setText("\u2764\uFE0F\u2764\uFE0F");
+            heart3.setVisibility(View.INVISIBLE);
         }else if(x==1){
-            heart.setText("\u2764\uFE0F");
+            //heart.setText("\u2764\uFE0F");
+            heart3.setVisibility(View.INVISIBLE);
+            heart2.setVisibility(View.INVISIBLE);
         }else if(x==0){
             editor.putInt("lives", 3);
             editor.commit();
@@ -416,10 +435,15 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
                 Intent intent = new Intent(getApplicationContext(), ActivityEasyLevelSelector.class);
                 startActivity(intent);
             }
+            countDownTimer.cancel();
+            finish();
         }
     }
 
     void loadQuestion() {
+        // Shuffle the questions and choices arrays
+        shuffleArrays(QuestionAnswer.question, QuestionAnswer.choices, QuestionAnswer.correctAnswers);
+
 
         if (currentQuestionIndex == totalQuestion) {
             finishQuiz();
@@ -434,6 +458,34 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
 
 
     }
+
+    // Method to shuffle two arrays in the same order
+    void shuffleArrays(String[] questionArray, String[][] choicesArray, String[] correctAnswerArray) {
+        Random rnd = new Random();
+        for (int i = questionArray.length - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+
+            // Swap elements at index i and index
+            String tempQuestion = questionArray[index];
+            questionArray[index] = questionArray[i];
+            questionArray[i] = tempQuestion;
+
+            String[] tempChoices = choicesArray[index];
+            choicesArray[index] = choicesArray[i];
+            choicesArray[i] = tempChoices;
+
+            String tempCorrectAnswer = correctAnswerArray[index];
+            correctAnswerArray[index] = correctAnswerArray[i];
+            correctAnswerArray[i] = tempCorrectAnswer;
+        }
+    }
+
+
+
+
+
+
+
 
     void finishQuiz() {
         String passed = "";

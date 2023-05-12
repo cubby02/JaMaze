@@ -86,9 +86,6 @@ public class ActivityGameOver extends AppCompatActivity {
         tryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityGameOver.this, MainActivity.class);
-                startActivity(intent);
-                finish();
 
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();

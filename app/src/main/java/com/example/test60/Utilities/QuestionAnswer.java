@@ -3,7 +3,7 @@ package com.example.test60.Utilities;
 public class QuestionAnswer {
 
     public static String question[] = {
-      "What is a correct syntax to output \"Hello World\" in Java?",
+            "What is a correct syntax to output \"Hello World\" in Java?",
             "How do you insert COMMENTS in Java code?",
             "Which data type is used to create a variable that should store text?",
             "How do you create a method in Java?",
@@ -63,7 +63,7 @@ public class QuestionAnswer {
             {"Hello World", "Hella World", "Hella Worad", "None of the choices"}
     };
     public static String correctAnswers[] = {
-      "System.out.println(\"Hello World\");",
+            "System.out.println(\"Hello World\");",
             "// This is a comment",
             "string",
             "methodName()",

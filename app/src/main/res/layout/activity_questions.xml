@@ -187,7 +187,6 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
                         android:text="&#x2764;&#x2764;&#x2764;"
                         android:textColor="#6785a6"
                         android:background="@drawable/button_bg_shape"/>
