@@ -27,9 +27,9 @@ public class EasyLevel1 extends AppCompatActivity {
     View avatar;
     Bitmap bitmap;
     float xDown = 0, yDown = 0;
-    Button buttonUp, buttonDown, buttonLeft, buttonRight;
+    Button buttonUp, buttonDown, buttonLeft, buttonRight; //eto yung i-ccopy per level sa mga activity
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint("ClickableViewAccessibility") //eto yung i-ccopy per level sa mga activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +69,7 @@ public class EasyLevel1 extends AppCompatActivity {
             }
         }
 
-        // Set onClickListeners for the buttons
+        //eto yung i-ccopy per level sa mga activity. from buttonUp to buttonDown
         buttonUp.setOnTouchListener(new View.OnTouchListener() {
             private Handler handler;
             @Override
@@ -181,6 +181,7 @@ public class EasyLevel1 extends AppCompatActivity {
 
     }
 
+    //eto yung i-ccopy per level sa mga activity
     private void checkCollision() {
         mazeMap.setDrawingCacheEnabled(true);
         mazeMap.buildDrawingCache(true);
