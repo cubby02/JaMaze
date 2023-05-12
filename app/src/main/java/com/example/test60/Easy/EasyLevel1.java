@@ -199,6 +199,8 @@ public class EasyLevel1 extends AppCompatActivity {
             int blue = Color.blue(pixel);
 
             int yellowThreshold = 70;
+//            int blackThreshold = 70;
+//            int whiteThreshold = 200;
             int blackThreshold = 70;
             int whiteThreshold = 200;
 
@@ -212,20 +214,20 @@ public class EasyLevel1 extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ActivityCongrats.class);
                 startActivity(intent);
                 finish();
-            } else if (red < whiteThreshold && green < whiteThreshold && blue < whiteThreshold) {
+            } else if (red > whiteThreshold && green > whiteThreshold && blue > whiteThreshold) {
                 Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
                 startActivity(intent);
                 finish();
-            } else if (red >= blackThreshold && green >= blackThreshold && blue >= blackThreshold) {
+            } else if (red <= blackThreshold && green <= blackThreshold && blue <= blackThreshold) {
                 // Detects white color
             }
             // reserved for white color detection.
             // else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold)
         } else {
             // Launch game over activity and finish current activity
-            Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
-            startActivity(intent);
-            finish();
+//            Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
+//            startActivity(intent);
+//            finish();
         }
     }
 
