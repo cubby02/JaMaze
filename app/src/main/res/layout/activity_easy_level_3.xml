@@ -81,6 +81,7 @@
         android:layout_below="@id/relativeLayout2"
         android:layout_width="wrap_content"
         android:layout_margin="40dp"
+        android:layout_above="@+id/linearLayout3"
         android:layout_height="wrap_content">
 
         <ImageView
@@ -107,6 +108,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_marginBottom="50dp"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
