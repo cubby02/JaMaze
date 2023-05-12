@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -86,6 +87,7 @@ public class ActivityGameOver extends AppCompatActivity {
         tryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();

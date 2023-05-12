@@ -50,7 +50,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
     ImageView heart1, heart2, heart3;
     private Button countdownButton;
     private CountDownTimer countDownTimer;
-    private int countdownValue = 10;
+    private int countdownValue;
     ImageView title;
 
     int score = 0;
@@ -85,7 +85,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         ans3.setOnClickListener(this);
         ans4.setOnClickListener(this);
 
-        startCountdown();
+
         SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
 
@@ -96,21 +96,27 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         if(counter == 0){
             title.setImageResource(R.drawable.easy_text);
             txtLevel.setText("LEVEL 1");
+            countdownValue = 20;
         }else if(counter == 1){
             title.setImageResource(R.drawable.easy_text);
             txtLevel.setText("LEVEL 2");
+            countdownValue = 20;
         }else if(counter == 2){
             title.setImageResource(R.drawable.easy_text);
             txtLevel.setText("LEVEL 3");
+            countdownValue = 20;
         }else if(counter == 3){
             title.setImageResource(R.drawable.easy_text);
             txtLevel.setText("LEVEL 4");
+            countdownValue = 20;
         }else if(counter == 4){
             title.setImageResource(R.drawable.easy_text);
             txtLevel.setText("LEVEL 5");
+            countdownValue = 20;
         }else if(counter == 5){
             title.setImageResource(R.drawable.average_text);
             txtLevel.setText("LEVEL 1");
+            countdownValue = 20;
         }else if(counter == 6){
             title.setImageResource(R.drawable.average_text);
             txtLevel.setText("LEVEL 2");
@@ -127,19 +133,20 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 1");
         }else if(counter == 11){
-            title.setImageResource(R.drawable.average_text);
+            title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 2");
         }else if(counter == 12){
-            title.setImageResource(R.drawable.average_text);
+            title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 3");
         }else if(counter == 13){
-            title.setImageResource(R.drawable.average_text);
+            title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 4");
         }else if(counter == 14){
-            title.setImageResource(R.drawable.average_text);
+            title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 5");
         }
 
+        startCountdown();
         loadQuestion();
 
 

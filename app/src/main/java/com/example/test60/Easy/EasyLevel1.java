@@ -244,18 +244,20 @@ public class EasyLevel1 extends AppCompatActivity {
                     buttonRight.setOnTouchListener(null);
                     buttonLeft.setOnTouchListener(null);
                     buttonDown.setOnTouchListener(null);
-                    finish();
                     Intent intent = new Intent(getApplicationContext(), ActivityCongrats.class);
                     startActivity(intent);
+                    finish();
                 }
 
             } else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold) {
                 lives--;
                 if (lives == 0) {
-                    gameOver = true;
-                    Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
-                    startActivity(intent);
-                    finish();
+                    if(!gameEnded){
+                        gameOver = true;
+                        Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 } else {
                     // Move the chartt back to the previous position
                     chartt.setX(previousX);
