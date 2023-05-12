@@ -1,10 +1,15 @@
 package com.example.test60.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +29,24 @@ public class MainActivity extends AppCompatActivity {
     final float defaultVolume = 0.5f;
     float currentVolume;
 
+    private MusicService myService;
+    private boolean isBound = false;
+
+    // Service connection to bind the activity to the service
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            MusicService.MyBinder myBinder = (MusicService.MyBinder) iBinder;
+            myService = myBinder.getService();
+            isBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            isBound = false;
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
         sound = ((GlobalApplication) getApplication()).getSoundPlayer();
 
         Intent intent = new Intent(this, MusicService.class);
+        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
         startService(intent);
+
 
         // Retrieve the saved volume from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
@@ -45,7 +70,12 @@ public class MainActivity extends AppCompatActivity {
             currentVolume = defaultVolume;
         }
 
-        sound.setMainVolume(currentVolume);
+        if (isBound) {
+            MediaPlayer mediaPlayer = myService.getMediaPlayer();
+            if (mediaPlayer != null) {
+                mediaPlayer.setVolume(currentVolume, currentVolume);
+            }
+        }
 
         imgButton = (ImageButton) findViewById(R.id.imageButton);
         imgButton.setOnClickListener(new View.OnClickListener() {
@@ -82,5 +112,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         stopService(new Intent(this, MusicService.class));
+        if (isBound) {
+            // Unbind from the service
+            unbindService(serviceConnection);
+            isBound = false;
+        }
     }
 }

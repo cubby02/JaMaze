@@ -2,12 +2,15 @@ package com.example.test60.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -19,6 +22,7 @@ import android.view.Window;
 
 import com.example.test60.R;
 import com.example.test60.Utilities.GlobalApplication;
+import com.example.test60.Utilities.MusicService;
 import com.example.test60.Utilities.SoundPlayer;
 
 public class ActivitySettings extends AppCompatActivity {
@@ -35,9 +39,6 @@ public class ActivitySettings extends AppCompatActivity {
     //Window object, that will store a reference to the current window
     private Window window;
     public MediaPlayer mediaPlayer;
-
-
-
     final float maxVolume = 1.0f;
     final float defaultVolume = 0.5f;
     float currentVolume;
@@ -45,6 +46,25 @@ public class ActivitySettings extends AppCompatActivity {
     final float maxVolume2 = 1.0f;
     final float defaultVolume2 = 0.5f;
     float currentVolume2;
+
+    private MusicService myService;
+    private boolean isBound = false;
+
+    // Service connection to bind the activity to the service
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            MusicService.MyBinder myBinder = (MusicService.MyBinder) iBinder;
+            myService = myBinder.getService();
+            isBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            isBound = false;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +73,8 @@ public class ActivitySettings extends AppCompatActivity {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
 
+        Intent intent = new Intent(this, MusicService.class);
+        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
 
         f1 = findViewById(R.id.charfemale1);
         f2 = findViewById(R.id.charfemale2);
@@ -76,6 +98,7 @@ public class ActivitySettings extends AppCompatActivity {
                 editor.commit();
 
                 Toast.makeText(getApplicationContext(), "settings updated.", Toast.LENGTH_SHORT).show();
+                finish();
 
             }
         });
@@ -83,13 +106,11 @@ public class ActivitySettings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 editor.putString("character", "charfemale2");
                 editor.commit();
 
                 Toast.makeText(getApplicationContext(), "settings updated.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
         f3.setOnClickListener(new View.OnClickListener() {
@@ -100,8 +121,7 @@ public class ActivitySettings extends AppCompatActivity {
                 editor.commit();
 
                 Toast.makeText(getApplicationContext(), "settings updated.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
         m1.setOnClickListener(new View.OnClickListener() {
@@ -112,8 +132,7 @@ public class ActivitySettings extends AppCompatActivity {
                 editor.commit();
 
                 Toast.makeText(getApplicationContext(), "settings updated.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
         m2.setOnClickListener(new View.OnClickListener() {
@@ -124,8 +143,7 @@ public class ActivitySettings extends AppCompatActivity {
                 editor.commit();
 
                 Toast.makeText(getApplicationContext(), "settings updated.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
         m3.setOnClickListener(new View.OnClickListener() {
@@ -136,8 +154,7 @@ public class ActivitySettings extends AppCompatActivity {
                 editor.commit();
 
                 Toast.makeText(getApplicationContext(), "settings updated.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -155,13 +172,24 @@ public class ActivitySettings extends AppCompatActivity {
         }
 
         musiBar.setProgress((int)(currentVolume / maxVolume * 100));
-        soundPlayer.setMainVolume(currentVolume);
+
+        if (isBound) {
+            MediaPlayer mediaPlayer = myService.getMediaPlayer();
+            if (mediaPlayer != null) {
+                mediaPlayer.setVolume(currentVolume, currentVolume);
+            }
+        }
 
         musiBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 currentVolume = progress / 100f * maxVolume;
-                soundPlayer.setMainVolume(currentVolume);
+                if (isBound) {
+                    MediaPlayer mediaPlayer = myService.getMediaPlayer();
+                    if (mediaPlayer != null) {
+                        mediaPlayer.setVolume(currentVolume, currentVolume);
+                    }
+                }
 
                 // Save the selected volume to SharedPreferences
                 // Check if the shared preferences are not null before saving the volume
@@ -228,6 +256,16 @@ public class ActivitySettings extends AppCompatActivity {
         });
 
         }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isBound) {
+            // Unbind from the service
+            unbindService(serviceConnection);
+            isBound = false;
+        }
+    }
 
     @Override
     public void onBackPressed() {

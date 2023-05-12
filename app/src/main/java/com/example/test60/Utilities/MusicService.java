@@ -3,6 +3,7 @@ package com.example.test60.Utilities;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Binder;
 import android.os.IBinder;
 
 import androidx.annotation.Nullable;
@@ -28,9 +29,27 @@ public class MusicService extends Service {
         super.onDestroy();
     }
 
+    // Method to get the MediaPlayer instance
+    public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
+    }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return new MyBinder(this);
     }
+
+    public class MyBinder extends Binder {
+        private MusicService service;
+
+        public MyBinder(MusicService service) {
+            this.service = service;
+        }
+
+        public MusicService getService() {
+            return service;
+        }
+    }
+
 }
