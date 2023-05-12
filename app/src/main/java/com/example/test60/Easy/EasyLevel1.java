@@ -204,7 +204,7 @@ public class EasyLevel1 extends AppCompatActivity {
     }
 
     private boolean gameOver = false;
-
+    private int lives = 3;
     //eto yung i-ccopy per level sa mga activity
     @SuppressLint("ClickableViewAccessibility")
     private void checkCollision(float previousX, float previousY) {
@@ -250,8 +250,19 @@ public class EasyLevel1 extends AppCompatActivity {
                 }
 
             } else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold) {
-                chartt.setX(previousX);
-                chartt.setY(previousY);
+                lives--;
+                if (lives == 0) {
+                    gameOver = true;
+                    Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    // Move the chartt back to the previous position
+                    chartt.setX(previousX);
+                    chartt.setY(previousY);
+                }
+
+
             }
             // reserved for white color detection.
             // else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold)
