@@ -2,14 +2,17 @@ package com.example.test60.Easy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.test60.Menu.ActivityCongrats;
@@ -26,6 +29,9 @@ public class EasyLevel3 extends AppCompatActivity {
     Bitmap bitmap;
     float xDown = 0, yDown = 0;
 
+    Button buttonUp, buttonDown, buttonLeft, buttonRight;
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +40,11 @@ public class EasyLevel3 extends AppCompatActivity {
 
         chartt= findViewById(R.id.chartt);
         mazeMap = findViewById(R.id.mazeMap);
+
+        buttonUp = findViewById(R.id.btn_up);
+        buttonDown = findViewById(R.id.btn_down);
+        buttonLeft = findViewById(R.id.btn_left);
+        buttonRight = findViewById(R.id.btn_right);
 
 
         //setting character config
@@ -61,90 +72,162 @@ public class EasyLevel3 extends AppCompatActivity {
             }
         }
 
-
-
-        chartt.setOnTouchListener(new View.OnTouchListener() {
-            float xDown, yDown; // Store initial touch coordinates
-            boolean isCharttTouched = false; // Keep track of whether chartt is currently being touched
-
+        buttonUp.setOnTouchListener(new View.OnTouchListener() {
+            private Handler handler;
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    // Enable touch on mazeMap only if chartt is not already being touched
-                    if (!isCharttTouched) {
-                        //enable or call mazeMap here
-                        isCharttTouched = true; // Set chartt as being touched
-                        mazeMap.setOnTouchListener(new View.OnTouchListener() {
-                            public boolean onTouch(View view, MotionEvent event) {
-                                mazeMap.setDrawingCacheEnabled(true);
-                                mazeMap.buildDrawingCache(true);
-
-                                if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
-                                    bitmap = mazeMap.getDrawingCache();
-                                    int pixels = bitmap.getPixel((int) event.getX(), (int) event.getY());
-
-                                    int red = Color.red(pixels);
-                                    int green = Color.green(pixels);
-                                    int blue = Color.blue(pixels);
-
-                                    int yellowThreshold  = 70;
-                                    int blackThreshold = 70;
-                                    int whiteThreshold = 200;
-
-                                    if (red >= yellowThreshold && green >= yellowThreshold && blue < yellowThreshold) {
-                                        mazeMap.setOnTouchListener(null);
-                                        Intent intent = new Intent(getApplicationContext(), ActivityCongrats.class);
-                                        startActivity(intent);
-                                        finish();
-                                    } else if (red < blackThreshold && green < blackThreshold && blue < blackThreshold) {
-                                        mazeMap.setOnTouchListener(null);
-                                        Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
-                                        startActivity(intent);
-                                        finish();
-                                    } else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold) {
-                                        // Detects white color
-                                    }
-                                    // reserved for white color detection.
-                                    // else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold)
-
-                                    float sensitivityX = 1f;
-                                    float sensitivityY = 1f;
-
-                                    switch (event.getActionMasked()) {
-                                        case MotionEvent.ACTION_DOWN:
-                                            xDown = event.getX() - chartt.getX(); // Update xDown with relative x coordinate of chartt
-                                            yDown = event.getY() - chartt.getY(); // Update yDown with relative y coordinate of chartt
-                                            break;
-                                        case MotionEvent.ACTION_MOVE:
-                                            float movedX, movedY;
-                                            movedX = event.getX();
-                                            movedY = event.getY();
-
-                                            float distanceX = movedX - xDown * sensitivityX;;
-                                            float distanceY = movedY - yDown * sensitivityX;;
-
-                                            chartt.setX(distanceX);
-                                            chartt.setY(distanceY);
-
-                                            break;
-                                    }
-                                } else {
-
-                                }
-                                return true; // Return true to indicate that the touch event has been consumed
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                chartt.setY(chartt.getY() - 10f);
+                                checkCollision();
+                                handler.postDelayed(this, 50); // move every 50 milliseconds
                             }
-                        });
-                    } else {
-                        // Remove touch listener from mazeMap
-                    }
-                } else if (motionEvent.getAction() == MotionEvent.ACTION_UP || motionEvent.getAction() == MotionEvent.ACTION_CANCEL) {
-
-                    isCharttTouched = false; // Reset chartt touch state
+                        }, 500); // wait 500 milliseconds before starting to move
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        if (handler != null) {
+                            handler.removeCallbacksAndMessages(null);
+                            handler = null;
+                        }
+                        return true;
                 }
                 return false;
             }
         });
+
+
+        buttonDown.setOnTouchListener(new View.OnTouchListener() {
+            private Handler handler;
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                chartt.setY(chartt.getY() + 10f);
+                                checkCollision();
+                                handler.postDelayed(this, 50); // move every 50 milliseconds
+                            }
+                        }, 500); // wait 500 milliseconds before starting to move
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        if (handler != null) {
+                            handler.removeCallbacksAndMessages(null);
+                            handler = null;
+                        }
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        buttonLeft.setOnTouchListener(new View.OnTouchListener() {
+            private Handler handler;
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                chartt.setX(chartt.getX() - 10f);
+                                checkCollision();
+                                handler.postDelayed(this, 50); // move every 50 milliseconds
+                            }
+                        }, 500); // wait 500 milliseconds before starting to move
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        if (handler != null) {
+                            handler.removeCallbacksAndMessages(null);
+                            handler = null;
+                        }
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        buttonRight.setOnTouchListener(new View.OnTouchListener() {
+            private Handler handler;
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                chartt.setX(chartt.getX() + 10f);
+                                checkCollision();
+                                handler.postDelayed(this, 50); // move every 50 milliseconds
+                            }
+                        }, 500); // wait 500 milliseconds before starting to move
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        if (handler != null) {
+                            handler.removeCallbacksAndMessages(null);
+                            handler = null;
+                        }
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    private void checkCollision() {
+        mazeMap.setDrawingCacheEnabled(true);
+        mazeMap.buildDrawingCache(true);
+
+        int x = (int) chartt.getX() + chartt.getWidth() / 2;
+        int y = (int) chartt.getY() + chartt.getHeight() / 2;
+
+        // Check if the chartt is within the bounds of the maze map
+        if (x >= 0 && x < mazeMap.getWidth() && y >= 0 && y < mazeMap.getHeight()) {
+            Bitmap bitmap = mazeMap.getDrawingCache();
+            int pixel = bitmap.getPixel(x, y);
+
+            int red = Color.red(pixel);
+            int green = Color.green(pixel);
+            int blue = Color.blue(pixel);
+
+            int yellowThreshold = 70;
+            int blackThreshold = 70;
+            int whiteThreshold = 200;
+
+            if (red >= yellowThreshold && green >= yellowThreshold && blue < yellowThreshold) {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+
+                editor.putInt("lives", 3);
+                editor.commit();
+
+                Intent intent = new Intent(getApplicationContext(), ActivityCongrats.class);
+                startActivity(intent);
+                finish();
+            } else if (red < blackThreshold && green < blackThreshold && blue < blackThreshold) {
+                Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
+                startActivity(intent);
+                finish();
+            } else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold) {
+                // Detects white color
+            }
+            // reserved for white color detection.
+            // else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold)
+        } else {
+            // Launch game over activity and finish current activity
+            Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
