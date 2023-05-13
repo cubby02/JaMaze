@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,14 +34,19 @@ import com.example.test60.Extreme.ExtremeLevel4;
 import com.example.test60.Extreme.ExtremeLevel5;
 import com.example.test60.Easy.EasyLevel1;
 import com.example.test60.Easy.EasyLevel2;
+import com.example.test60.Utilities.EasyAverageQuestions;
 import com.example.test60.Utilities.GlobalApplication;
+import com.example.test60.Utilities.HardQuestions;
 import com.example.test60.Utilities.QuestionAnswer;
 import com.example.test60.R;
 import com.example.test60.Utilities.SoundPlayer;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class ActivityQuestions extends AppCompatActivity implements View.OnClickListener {
+
     public SoundPlayer sound;
     TextView questionsTextview,txtLevel;
     Button ans1, ans2, ans3, ans4, timer, hint;
@@ -59,7 +63,10 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
     int currentQuestionIndex = 0;
     String selectedAnswer = "";
 
-
+    private EasyAverageQuestions[] easyAverageQuizData;
+    private HardQuestions[] hardQuizData;
+    ArrayList<ArrayList<String>> quizArray = new ArrayList<>();
+    private String rightAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,50 +104,62 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
             title.setImageResource(R.drawable.easy_text);
             txtLevel.setText("LEVEL 1");
             countdownValue = 20;
+            easyAverageQuizData = QuestionAnswer.easyQuestions;
         }else if(counter == 1){
             title.setImageResource(R.drawable.easy_text);
             txtLevel.setText("LEVEL 2");
             countdownValue = 20;
+            easyAverageQuizData = QuestionAnswer.easyQuestions;
         }else if(counter == 2){
             title.setImageResource(R.drawable.easy_text);
             txtLevel.setText("LEVEL 3");
             countdownValue = 20;
+            easyAverageQuizData = QuestionAnswer.easyQuestions;
         }else if(counter == 3){
             title.setImageResource(R.drawable.easy_text);
             txtLevel.setText("LEVEL 4");
             countdownValue = 20;
+            easyAverageQuizData = QuestionAnswer.easyQuestions;
         }else if(counter == 4){
             title.setImageResource(R.drawable.easy_text);
             txtLevel.setText("LEVEL 5");
             countdownValue = 20;
+            easyAverageQuizData = QuestionAnswer.easyQuestions;
         }else if(counter == 5){
             title.setImageResource(R.drawable.average_text);
             txtLevel.setText("LEVEL 1");
             countdownValue = 30;
+            easyAverageQuizData = QuestionAnswer.averageQuestions;
         }else if(counter == 6){
             title.setImageResource(R.drawable.average_text);
             txtLevel.setText("LEVEL 2");
             countdownValue = 30;
+            easyAverageQuizData = QuestionAnswer.averageQuestions;
         }else if(counter == 7){
             title.setImageResource(R.drawable.average_text);
             txtLevel.setText("LEVEL 3");
             countdownValue = 30;
+            easyAverageQuizData = QuestionAnswer.averageQuestions;
         }else if(counter == 8){
             title.setImageResource(R.drawable.average_text);
             txtLevel.setText("LEVEL 4");
             countdownValue = 30;
+            easyAverageQuizData = QuestionAnswer.averageQuestions;
         }else if(counter == 9){
             title.setImageResource(R.drawable.average_text);
             txtLevel.setText("LEVEL 5");
             countdownValue = 30;
+            easyAverageQuizData = QuestionAnswer.averageQuestions;
         }else if(counter == 10){
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 1");
             countdownValue = 40;
+            hardQuizData = QuestionAnswer.hardQuestions;
         }else if(counter == 11){
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 2");
             countdownValue = 40;
+            hardQuizData = QuestionAnswer.hardQuestions;
         }else if(counter == 12){
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 3");
@@ -149,10 +168,12 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 4");
             countdownValue = 40;
+            hardQuizData = QuestionAnswer.hardQuestions;
         }else if(counter == 14){
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 5");
             countdownValue = 40;
+            hardQuizData = QuestionAnswer.hardQuestions;
         }else if(counter == 15){
             title.setImageResource(R.drawable.extreme_text);
             txtLevel.setText("LEVEL 1");
@@ -175,9 +196,39 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
             countdownValue = 50;
         }
 
+
+        if(easyAverageQuizData != null){
+            for (EasyAverageQuestions quizDatum : easyAverageQuizData) {
+                //prepare Array
+                ArrayList<String> tmpArray = new ArrayList<>();
+                tmpArray.add(quizDatum.getQuestion()); //question
+                tmpArray.add(quizDatum.getCorrectAnswer()); //right answer
+                tmpArray.add(quizDatum.getChoice1()); //choice1
+                tmpArray.add(quizDatum.getChoice2()); //choice2
+                tmpArray.add(quizDatum.getChoice3()); //choice3
+
+                //add tmpArray to quizArray
+                quizArray.add(tmpArray);
+            }
+        }
+
+        if(hardQuizData != null){
+            for (HardQuestions quizDatum : hardQuizData) {
+                //prepare Array
+                ArrayList<String> tmpArray = new ArrayList<>();
+                tmpArray.add(quizDatum.getQuestion()); //question
+                tmpArray.add(quizDatum.getCorrectAnswer()); //right answer
+                tmpArray.add(quizDatum.getChoice1()); //choice1
+                tmpArray.add(quizDatum.getChoice2()); //choice2
+                tmpArray.add(quizDatum.getChoice3()); //choice3
+
+                //add tmpArray to quizArray
+                quizArray.add(tmpArray);
+            }
+        }
+
         startCountdown();
         loadQuestion();
-
 
         hint.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -232,6 +283,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         });
     }
 
+
     private void startCountdown() {
         countDownTimer = new CountDownTimer(countdownValue * 1000, 1000) {
             @Override
@@ -273,7 +325,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
 
             int counter = pref.getInt("counter", 0);
 
-            if (selectedAnswer.equals(QuestionAnswer.correctAnswers[currentQuestionIndex])) {
+            if (selectedAnswer.equals(rightAnswer)) {
                 int x = counter;
                 x+=1;
 
@@ -395,10 +447,8 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         editor.commit();
 
         if(x==2){
-            //heart.setText("\u2764\uFE0F\u2764\uFE0F");
             heart3.setVisibility(View.INVISIBLE);
         }else if(x==1){
-            //heart.setText("\u2764\uFE0F");
             heart3.setVisibility(View.INVISIBLE);
             heart2.setVisibility(View.INVISIBLE);
         }else if(x==0){
@@ -476,21 +526,34 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         }
     }
 
+
     void loadQuestion() {
-        // Shuffle the questions and choices arrays
-        shuffleArrays(QuestionAnswer.question, QuestionAnswer.choices, QuestionAnswer.correctAnswers);
 
         if (currentQuestionIndex == totalQuestion) {
             finishQuiz();
             return;
         }
 
-        questionsTextview.setText(QuestionAnswer.question[currentQuestionIndex]);
-        ans1.setText(QuestionAnswer.choices[currentQuestionIndex][0]);
-        ans2.setText(QuestionAnswer.choices[currentQuestionIndex][1]);
-        ans3.setText(QuestionAnswer.choices[currentQuestionIndex][2]);
-        ans4.setText(QuestionAnswer.choices[currentQuestionIndex][3]);
+        //Generate random number(quizArray's size - 1)
+        Random random = new Random();
+        int randomNum = random.nextInt(quizArray.size());
 
+        //Pick one quiz set
+        ArrayList<String> quiz = quizArray.get(randomNum);
+
+        //Set question and right Answer
+        //Array format {"Question", "Right Answer", "Choice1", "Choice2", "3"}
+        rightAnswer = quiz.get(1);
+        questionsTextview.setText(quiz.get(0));
+
+        //remove question from quiz and shuffle choices
+        quiz.remove(0);
+        Collections.shuffle(quiz);
+
+        ans1.setText(quiz.get(0));
+        ans2.setText(quiz.get(1));
+        ans3.setText(quiz.get(2));
+        ans4.setText(quiz.get(3));
 
     }
 
