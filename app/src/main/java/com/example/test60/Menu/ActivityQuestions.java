@@ -480,7 +480,6 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         // Shuffle the questions and choices arrays
         shuffleArrays(QuestionAnswer.question, QuestionAnswer.choices, QuestionAnswer.correctAnswers);
 
-
         if (currentQuestionIndex == totalQuestion) {
             finishQuiz();
             return;
