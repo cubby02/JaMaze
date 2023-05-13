@@ -43,6 +43,7 @@ import com.example.test60.Utilities.SoundPlayer;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class ActivityQuestions extends AppCompatActivity implements View.OnClickListener {
@@ -67,6 +68,9 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
     private HardQuestions[] hardQuizData;
     ArrayList<ArrayList<String>> quizArray = new ArrayList<>();
     private String rightAnswer;
+    int livesCurrent;
+
+    private boolean isHintClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +95,8 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         ans2.setOnClickListener(this);
         ans3.setOnClickListener(this);
         ans4.setOnClickListener(this);
+
+
 
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
@@ -233,51 +239,35 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         hint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sound.playClick();
-                if(counter == 0){
-                    Toast.makeText(getApplicationContext(),"Hint: Uses println() to print a new line.",Toast.LENGTH_SHORT).show();
-                }else if(counter==1){
-                    Toast.makeText(getApplicationContext(),"Hint: In java, naming convention is to always start with a lowercase letter and then capitalize the first letter of every subsequent word.",Toast.LENGTH_SHORT).show();
-                }else if(counter==2){
-                    Toast.makeText(getApplicationContext(),"Hint: A sequence of characters that exists as an object of the class java.lang",Toast.LENGTH_SHORT).show();
-                }else if(counter==3){
-                    Toast.makeText(getApplicationContext(),"Hint: Always denoted with parenthesis.",Toast.LENGTH_SHORT).show();
-                }else if(counter==4){
-                    Toast.makeText(getApplicationContext(),"Hint: A file containing Java bytecode that can be executed on the Java Virtual Machine.",Toast.LENGTH_SHORT).show();
-                }else if(counter == 5){
-                    Toast.makeText(getApplicationContext(),"Hint: Object References.",Toast.LENGTH_SHORT).show();
-                }else if(counter==6){
-                    Toast.makeText(getApplicationContext(),"Hint: Create/Object Creation.",Toast.LENGTH_SHORT).show();
-                }else if(counter==7){
-                    Toast.makeText(getApplicationContext(),"Hint: Constant and Unchangeable.",Toast.LENGTH_SHORT).show();
-                }else if(counter==8){
-                    Toast.makeText(getApplicationContext(),"Hint: Abstract.",Toast.LENGTH_SHORT).show();
-                }else if(counter==9){
-                    Toast.makeText(getApplicationContext(),"Hint: Something subclass.",Toast.LENGTH_SHORT).show();
-                } if(counter == 10){
-                    Toast.makeText(getApplicationContext(),"Hint:  The switch statement in Java is used to test a variable against a series of constant values and execute different code blocks based on the value of the variable.",Toast.LENGTH_SHORT).show();
-                }else if(counter==11){
-                    Toast.makeText(getApplicationContext(),"Hint: The switch statement in Java is used to test a variable against a series of constant values and execute different code blocks based on the value of the variable.",Toast.LENGTH_SHORT).show();
-                }else if(counter==12){
-                    Toast.makeText(getApplicationContext(),"Hint: Trash",Toast.LENGTH_SHORT).show();
-                }else if(counter==13){
-                    Toast.makeText(getApplicationContext(),"Hint: EXCEPT IN STORE",Toast.LENGTH_SHORT).show();
-                }else if(counter==14){
-                    Toast.makeText(getApplicationContext(),"Hint: with s in the end of the word.",Toast.LENGTH_SHORT).show();
-                }  if(counter == 15){
-                    Toast.makeText(getApplicationContext(),"Hint:  something in the system.",Toast.LENGTH_SHORT).show();
-                }else if(counter==16){
-                    Toast.makeText(getApplicationContext(),"Hint:  b is v, d is a",Toast.LENGTH_SHORT).show();
-                }else if(counter==17){
-                    Toast.makeText(getApplicationContext(),"Hint: Remember the order of operations (PEMDAS).",Toast.LENGTH_SHORT).show();
-                }else if(counter==18){
-                    Toast.makeText(getApplicationContext(),"Hint: Evaluate each subexpression within the parentheses separately and use the appropriate logical operator.",Toast.LENGTH_SHORT).show();
-                }else if(counter==19){
-                    Toast.makeText(getApplicationContext(),"Hint: Remember that Strings are immutable in Java, meaning that the value of a String object cannot be changed once it is created.",Toast.LENGTH_SHORT).show();
+                if(!isHintClicked){
+                    isHintClicked = true;
+                    sound.playClick();
 
-                }else if(counter==20){
-                    Intent intent = new Intent(getApplicationContext(), ActivityEasyLevelSelector.class);
-                    startActivity(intent);
+                    ans1.setAlpha(1.0f);
+                    ans2.setAlpha(1.0f);
+                    ans3.setAlpha(1.0f);
+                    ans4.setAlpha(1.0f);
+
+                    Button[] answerButtons = { ans1, ans2, ans3, ans4 };
+                    List<Button> remainingButtons = new ArrayList<>();
+
+                    // Add all buttons that are not the correct answer to the remainingButtons list
+                    for (Button button : answerButtons) {
+                        if (!button.getText().equals(rightAnswer)) {
+                            remainingButtons.add(button);
+                        }
+                    }
+
+                    // Choose a random button to hide
+                    Random rand = new Random();
+                    int index = rand.nextInt(remainingButtons.size());
+                    Button buttonToHide = remainingButtons.get(index);
+
+                    // Hide the chosen button
+                    buttonToHide.setVisibility(View.GONE);
+                    liveCount();
+                } else {
+                    Toast.makeText(ActivityQuestions.this, "Hint already used", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -324,6 +314,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
             SharedPreferences.Editor editor = pref.edit();
 
             int counter = pref.getInt("counter", 0);
+            Toast.makeText(this, "Counter: " + counter, Toast.LENGTH_SHORT).show();
 
             if (selectedAnswer.equals(rightAnswer)) {
                 int x = counter;
@@ -336,8 +327,12 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
 
                 currentQuestionIndex = x;
 
+
+                //show first here a well done layout
+                //if user clicks continue, the following code will be executed.
                 if(diff.trim().equals("easy")){
                     if(counter == 0){
+                        Toast.makeText(this, "Counter: " + counter, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), EasyLevel2.class);
                         startActivity(intent);
                     }else if(counter==1){
@@ -437,7 +432,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         SharedPreferences.Editor editor = pref.edit();
 
         int counter = pref.getInt("counter", 0);
-        int livesCurrent = pref.getInt("lives",3);
+        livesCurrent = pref.getInt("lives",3);
 
 
         int x = livesCurrent;
@@ -454,75 +449,28 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         }else if(x==0){
             editor.putInt("lives", 3);
             editor.commit();
-            if(counter == 0){
-                Intent intent = new Intent(getApplicationContext(), EasyLevel1.class);
-                startActivity(intent);
-            }else if(counter==1){
-                Intent intent = new Intent(getApplicationContext(), EasyLevel2.class);
-                startActivity(intent);
-            }else if(counter==2){
-                Intent intent = new Intent(getApplicationContext(), EasyLevel3.class);
-                startActivity(intent);
-            }else if(counter==3){
-                Intent intent = new Intent(getApplicationContext(), EasyLevel4.class);
-                startActivity(intent);
-            }else if(counter==4){
-                Intent intent = new Intent(getApplicationContext(), EasyLevel5.class);
-                startActivity(intent);
-            }else if(counter == 5){
 
-                Intent intent = new Intent(getApplicationContext(), AverageLevel1.class);
-                startActivity(intent);
-            }else if(counter==6){
-                Intent intent = new Intent(getApplicationContext(), AverageLevel2.class);
-                startActivity(intent);
-            }else if(counter==7){
-                Intent intent = new Intent(getApplicationContext(), AverageLevel3.class);
-                startActivity(intent);
-            }else if(counter==8){
-                Intent intent = new Intent(getApplicationContext(), AverageLevel4.class);
-                startActivity(intent);
-            }else if(counter==9){
-                Intent intent = new Intent(getApplicationContext(), AverageLevel5.class);
-                startActivity(intent);
-            } if(counter == 10){
+            //this is just a test, will show a game over layout
+            Toast.makeText(this, "GAME OVER LAYOUT VISIBLE", Toast.LENGTH_SHORT).show();
+            //if the user clicks try again, layout will be GONE.
 
-                Intent intent = new Intent(getApplicationContext(), HardLevel1.class);
-                startActivity(intent);
-            }else if(counter==11){
-                Intent intent = new Intent(getApplicationContext(), HardLevel2.class);
-                startActivity(intent);
-            }else if(counter==12){
-                Intent intent = new Intent(getApplicationContext(), HardLevel3.class);
-                startActivity(intent);
-            }else if(counter==13){
-                Intent intent = new Intent(getApplicationContext(), HardLevel4.class);
-                startActivity(intent);
-            }else if(counter==14){
-                Intent intent = new Intent(getApplicationContext(), HardLevel5.class);
-                startActivity(intent);
-            }  if(counter == 15){
+            //load Another set of question
+            livesCurrent = 3;
+            loadQuestion();
+            ans1.setAlpha(1.0f);
+            ans2.setAlpha(1.0f);
+            ans3.setAlpha(1.0f);
+            ans4.setAlpha(1.0f);
+            heart3.setVisibility(View.VISIBLE);
+            heart2.setVisibility(View.VISIBLE);
+            isHintClicked = false;
+            ans1.setVisibility(View.VISIBLE);
+            ans2.setVisibility(View.VISIBLE);
+            ans3.setVisibility(View.VISIBLE);
+            ans4.setVisibility(View.VISIBLE);
 
-                Intent intent = new Intent(getApplicationContext(), ExtremeLevel1.class);
-                startActivity(intent);
-            }else if(counter==16){
-                Intent intent = new Intent(getApplicationContext(), ExtremeLevel2.class);
-                startActivity(intent);
-            }else if(counter==17){
-                Intent intent = new Intent(getApplicationContext(), ExtremeLevel3.class);
-                startActivity(intent);
-            }else if(counter==18){
-                Intent intent = new Intent(getApplicationContext(), ExtremeLevel4.class);
-                startActivity(intent);
-            }else if(counter==19){
-                Intent intent = new Intent(getApplicationContext(), ExtremeLevel5.class);
-                startActivity(intent);
-            }else if(counter==20){
-                Intent intent = new Intent(getApplicationContext(), ActivityEasyLevelSelector.class);
-                startActivity(intent);
-            }
             countDownTimer.cancel();
-            finish();
+            //finish();
         }
     }
 
@@ -555,34 +503,10 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         ans3.setText(quiz.get(2));
         ans4.setText(quiz.get(3));
 
+        //remove this quiz from quizArray
+        quizArray.remove(randomNum);
+
     }
-
-    // Method to shuffle two arrays in the same order
-    void shuffleArrays(String[] questionArray, String[][] choicesArray, String[] correctAnswerArray) {
-        Random rnd = new Random();
-        for (int i = questionArray.length - 1; i > 0; i--) {
-            int index = rnd.nextInt(i + 1);
-
-            // Swap elements at index i and index
-            String tempQuestion = questionArray[index];
-            questionArray[index] = questionArray[i];
-            questionArray[i] = tempQuestion;
-
-            String[] tempChoices = choicesArray[index];
-            choicesArray[index] = choicesArray[i];
-            choicesArray[i] = tempChoices;
-
-            String tempCorrectAnswer = correctAnswerArray[index];
-            correctAnswerArray[index] = correctAnswerArray[i];
-            correctAnswerArray[i] = tempCorrectAnswer;
-        }
-    }
-
-
-
-
-
-
 
 
     void finishQuiz() {

@@ -89,13 +89,13 @@ public class QuestionAnswer {
     };
 
     public static EasyAverageQuestions[] easyQuestions = {
-            new EasyAverageQuestions("Java is short for \"JavaScript\"", "False", "True", "False", "Not sure"),
+            new EasyAverageQuestions("Java is short for \"JavaScript\"", "False", "True", "Not applicable", "Not sure"),
             new EasyAverageQuestions("James Gosling is the creator of Java", "True", "False", "Not sure", "Not applicable"),
             new EasyAverageQuestions("Oracle Corporation is the current owner of the official implementation of the Java SE platform", "True", "False", "Not sure", "Not applicable"),
             new EasyAverageQuestions("Java was created in 1995", "False", "True", "False", "Not sure"),
             new EasyAverageQuestions("JavaScript is not part of Java", "True", "False", "Not sure", "Not applicable"),
             new EasyAverageQuestions("The basic syntax of Java involves four components: object, class, methods, and instance variables", "True", "False", "Not sure", "Not applicable"),
-            new EasyAverageQuestions("The stop statement is used to stop a loop", "True", "False", "Not sure", "Not applicable"),
+            new EasyAverageQuestions("The stop statement is used to stop a loop", "False", "True", "Not sure", "Not applicable"),
             new EasyAverageQuestions("The operator * is used to multiply numbers", "True", "False", "Not sure", "Not applicable"),
             new EasyAverageQuestions("In Java, it is possible to inherit attributes and methods from one class to another", "True", "False", "Not sure", "Not applicable"),
             new EasyAverageQuestions("Do array indexes start with 1 in Java?", "False", "True", "Not sure", "Not applicable"),
