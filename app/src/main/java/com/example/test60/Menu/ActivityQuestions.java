@@ -314,7 +314,6 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
             SharedPreferences.Editor editor = pref.edit();
 
             int counter = pref.getInt("counter", 0);
-            Toast.makeText(this, "Counter: " + counter, Toast.LENGTH_SHORT).show();
 
             if (selectedAnswer.equals(rightAnswer)) {
                 int x = counter;
@@ -332,7 +331,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
                 //if user clicks continue, the following code will be executed.
                 if(diff.trim().equals("easy")){
                     if(counter == 0){
-                        Toast.makeText(this, "Counter: " + counter, Toast.LENGTH_SHORT).show();
+
                         Intent intent = new Intent(getApplicationContext(), EasyLevel2.class);
                         startActivity(intent);
                     }else if(counter==1){
