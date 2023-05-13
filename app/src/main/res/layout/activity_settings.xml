@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Menu.ActivitySettings"
-    android:background="@drawable/bg2">
+    android:background="@drawable/settings_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,78 +17,6 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ImageButton
-                android:id="@+id/charfemale2"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:background="@drawable/charfemale2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.432"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.594" />
-
-            <ImageButton
-                android:id="@+id/charmale1"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:background="@drawable/charmale1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.575"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.594" />
-
-            <ImageButton
-                android:id="@+id/charfemale3"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:background="@drawable/charfemale3"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.71"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.594" />
-
-            <ImageButton
-                android:id="@+id/charmale3"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:background="@drawable/charmale3"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.845"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.594" />
-
-            <ImageButton
-                android:id="@+id/charmale2"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:background="@drawable/charmale2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.278"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.594" />
-
-            <ImageButton
-                android:id="@+id/charfemale1"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:background="@drawable/charfemale1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.124"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.594" />
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -104,15 +32,77 @@
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="104dp"
-                android:layout_height="34dp"
+                android:layout_width="298dp"
+                android:layout_height="37dp"
+                android:src="@drawable/character_img"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.519"
-                app:srcCompat="@drawable/characters_text" />
+                app:layout_constraintVertical_bias="0.519" />
+
+            <LinearLayout
+                android:id="@+id/linear1"
+                android:layout_marginTop="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/imageView5"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/charfemale1"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/charfemale1" />
+
+                <ImageButton
+                    android:id="@+id/charfemale2"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/charfemale2"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <ImageButton
+                    android:id="@+id/charfemale3"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/charfemale3" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear2"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/linear1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/charmale1"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/charmale1" />
+
+                <ImageButton
+                    android:id="@+id/charmale2"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/charmale2"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <ImageButton
+                    android:id="@+id/charmale3"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/charmale3" />
+
+            </LinearLayout>
 
             <SeekBar
                 android:id="@+id/musicBar"
@@ -146,7 +136,7 @@
                 android:fontFamily="sans-serif-black"
                 android:text="Sound"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#6785A6"
+                android:textColor="@color/white"
                 android:typeface="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -162,7 +152,7 @@
                 android:fontFamily="sans-serif-black"
                 android:text="Music"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#6785A6"
+                android:textColor="@color/white"
                 android:typeface="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

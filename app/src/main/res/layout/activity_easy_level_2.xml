@@ -81,14 +81,14 @@
         android:id="@+id/constraintLayout"
         android:layout_below="@id/relativeLayout2"
         android:layout_width="wrap_content"
-        android:layout_margin="40dp"
+        android:layout_margin="20dp"
         android:layout_above="@+id/linearLayout3"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/mazeMap"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintDimensionRatio="h, 1:1"
             android:background="@drawable/easy_2b"
             app:layout_constraintEnd_toEndOf="parent"
@@ -101,10 +101,10 @@
             android:layout_height="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.108"
+            app:layout_constraintHorizontal_bias="0.048"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.943" />
+            app:layout_constraintVertical_bias="0.953" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
