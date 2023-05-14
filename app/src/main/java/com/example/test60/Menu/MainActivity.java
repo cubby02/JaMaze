@@ -111,11 +111,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopService(new Intent(this, MusicService.class));
         if (isBound) {
             // Unbind from the service
             unbindService(serviceConnection);
             isBound = false;
         }
+
+        stopService(new Intent(this, MusicService.class));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

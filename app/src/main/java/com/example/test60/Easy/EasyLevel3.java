@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import com.example.test60.Menu.ActivityCongrats;
 import com.example.test60.Menu.ActivityGameOver;
 import com.example.test60.R;
+import com.example.test60.Utilities.GlobalApplication;
+import com.example.test60.Utilities.SoundPlayer;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class EasyLevel3 extends AppCompatActivity {
@@ -31,14 +33,15 @@ public class EasyLevel3 extends AppCompatActivity {
 
     Button buttonUp, buttonDown, buttonLeft, buttonRight;
     private boolean gameEnded = false;
-
+    private SoundPlayer sound;
+    Button btnReset;
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_easy_level_3);
 
-
+        sound = ((GlobalApplication) getApplication()).getSoundPlayer();
         chartt= findViewById(R.id.chartt);
         mazeMap = findViewById(R.id.mazeMap);
 
@@ -50,6 +53,17 @@ public class EasyLevel3 extends AppCompatActivity {
 
         //setting character config
         SharedPreferences pref = getApplicationContext().getSharedPreferences("settings", MODE_PRIVATE);
+
+        btnReset = findViewById(R.id.button3);
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sound.playReset();
+                finish();
+                startActivity(new Intent(EasyLevel3.this, EasyLevel3.class));
+                overridePendingTransition(0,0);
+            }
+        });
 
         String characterSetting = pref.getString("character", "null");
         if(characterSetting.equals("null")){
@@ -236,6 +250,8 @@ public class EasyLevel3 extends AppCompatActivity {
 
             if (red >= yellowThreshold && green >= yellowThreshold && blue < yellowThreshold) {
                 if (!gameEnded) {
+                    sound.stopHitWall();
+                    sound.playAfterMaze();
                     gameEnded = true;
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
@@ -253,15 +269,20 @@ public class EasyLevel3 extends AppCompatActivity {
                 }
 
             } else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold) {
+                sound.playHitWall();
                 lives--;
                 if (lives == 0) {
                     if(!gameEnded){
+
+                        sound.playGameOver();
                         gameOver = true;
                         Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
                         startActivity(intent);
                         finish();
+                        sound.stopHitWall();
                     }
                 } else {
+
                     // Move the chartt back to the previous position
                     chartt.setX(previousX);
                     chartt.setY(previousY);

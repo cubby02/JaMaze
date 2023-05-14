@@ -92,7 +92,7 @@ public class QuestionAnswer {
             new EasyAverageQuestions("Java is short for \"JavaScript\"", "False", "True", "Not applicable", "Not sure"),
             new EasyAverageQuestions("James Gosling is the creator of Java", "True", "False", "Not sure", "Not applicable"),
             new EasyAverageQuestions("Oracle Corporation is the current owner of the official implementation of the Java SE platform", "True", "False", "Not sure", "Not applicable"),
-            new EasyAverageQuestions("Java was created in 1995", "False", "True", "False", "Not sure"),
+            new EasyAverageQuestions("Java was created in 1995", "False", "True", "Not Applicable", "Not sure"),
             new EasyAverageQuestions("JavaScript is not part of Java", "True", "False", "Not sure", "Not applicable"),
             new EasyAverageQuestions("The basic syntax of Java involves four components: object, class, methods, and instance variables", "True", "False", "Not sure", "Not applicable"),
             new EasyAverageQuestions("The stop statement is used to stop a loop", "False", "True", "Not sure", "Not applicable"),

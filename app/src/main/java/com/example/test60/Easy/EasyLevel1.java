@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import com.example.test60.Menu.ActivityCongrats;
 import com.example.test60.Menu.ActivityGameOver;
 import com.example.test60.R;
+import com.example.test60.Utilities.GlobalApplication;
+import com.example.test60.Utilities.SoundPlayer;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class EasyLevel1 extends AppCompatActivity {
@@ -29,22 +31,40 @@ public class EasyLevel1 extends AppCompatActivity {
     float xDown = 0, yDown = 0;
     Button buttonUp, buttonDown, buttonLeft, buttonRight; //eto yung i-ccopy per level sa mga activity
 
+    Button btnReset;
     private boolean gameEnded = false;
+
+    private SoundPlayer sound;
+
 
     @SuppressLint("ClickableViewAccessibility") //eto yung i-ccopy per level sa mga activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_easy_level_1);
+        sound = ((GlobalApplication) getApplication()).getSoundPlayer();
 
         buttonUp = findViewById(R.id.btn_up);
         buttonDown = findViewById(R.id.btn_down);
         buttonLeft = findViewById(R.id.btn_left);
         buttonRight = findViewById(R.id.btn_right);
 
+
+
         chartt= findViewById(R.id.chartt);
         mazeMap = findViewById(R.id.mazeMap);
 
+
+        btnReset = findViewById(R.id.button3);
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sound.playReset();
+                finish();
+                startActivity(new Intent(EasyLevel1.this, EasyLevel1.class));
+                overridePendingTransition(0,0);
+            }
+        });
 
         //setting character config
         SharedPreferences pref = getApplicationContext().getSharedPreferences("settings", MODE_PRIVATE);
@@ -235,6 +255,8 @@ public class EasyLevel1 extends AppCompatActivity {
 
             if (red >= yellowThreshold && green >= yellowThreshold && blue < yellowThreshold) {
                 if (!gameEnded) {
+                    sound.stopHitWall();
+                    sound.playAfterMaze();
                     gameEnded = true;
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
@@ -252,26 +274,27 @@ public class EasyLevel1 extends AppCompatActivity {
                 }
 
             } else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold) {
+                sound.playHitWall();
                 lives--;
                 if (lives == 0) {
                     if(!gameEnded){
+                        sound.playGameOver();
                         gameOver = true;
                         Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
                         startActivity(intent);
                         finish();
+                        sound.stopHitWall();
                     }
                 } else {
+
                     // Move the chartt back to the previous position
                     chartt.setX(previousX);
                     chartt.setY(previousY);
                 }
-
-
             }
             // reserved for white color detection.
             // else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold)
         } else {
-            // Launch game over activity and finish current activity
             if (x < 0) {
                 chartt.setX(0);
             } else if (x > mazeMap.getWidth() - chartt.getWidth()) {

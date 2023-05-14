@@ -1,13 +1,20 @@
 package com.example.test60.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +44,7 @@ import com.example.test60.Easy.EasyLevel2;
 import com.example.test60.Utilities.EasyAverageQuestions;
 import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.HardQuestions;
+import com.example.test60.Utilities.MusicService;
 import com.example.test60.Utilities.QuestionAnswer;
 import com.example.test60.R;
 import com.example.test60.Utilities.SoundPlayer;
@@ -71,6 +79,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
     int livesCurrent;
 
     private boolean isHintClicked = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -326,8 +335,40 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
 
                 currentQuestionIndex = x;
 
+                if(countDownTimer != null){
+                    countDownTimer.cancel();
+                }
 
                 //show first here a well done layout
+                sound.playAfterQuiz();
+                showWellDone(counter, diff, editor);
+
+            }else{
+                liveCount();
+            }
+        }
+    }
+
+    private void showWellDone(int counter, String diff, SharedPreferences.Editor editor){
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.activity_congrats_2);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Window window = dialog.getWindow();
+        window.setLayout(RecyclerView.LayoutParams.MATCH_PARENT,RecyclerView.LayoutParams.MATCH_PARENT);
+        window.setGravity(Gravity.CENTER);
+
+        ImageButton btnContinue = dialog.findViewById(R.id.con);
+        ImageButton btnHome = dialog.findViewById(R.id.homeBtn);
+        ImageButton btnSettings = dialog.findViewById(R.id.settingsBtn);
+        ImageButton btnBack = dialog.findViewById(R.id.backBtn3);
+
+        btnContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sound.playClick();
+
                 //if user clicks continue, the following code will be executed.
                 if(diff.trim().equals("easy")){
                     if(counter == 0){
@@ -417,12 +458,43 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
                     Intent intent = new Intent(getApplicationContext(), ActivitySelectDifficulty.class);
                     startActivity(intent);
                 }
-                countDownTimer.cancel();
+                if(countDownTimer != null){
+                    countDownTimer.cancel();
+                }
+
                 finish();
-            }else{
-                liveCount();
             }
-        }
+        });
+
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sound.playClick();
+                stopService(new Intent(ActivityQuestions.this, MusicService.class));
+                Intent intent = new Intent(ActivityQuestions.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sound.playClick();
+                Intent intentLoadNewActivity = new Intent(ActivityQuestions.this, ActivitySettings.class);
+                startActivity(intentLoadNewActivity);
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sound.playClick();
+                finish();
+            }
+        });
+
+        dialog.show();
     }
 
     void liveCount(){
@@ -449,30 +521,87 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
             editor.putInt("lives", 3);
             editor.commit();
 
+            if(countDownTimer !=null) {
+                countDownTimer.cancel();
+            }
+
             //this is just a test, will show a game over layout
-            Toast.makeText(this, "GAME OVER LAYOUT VISIBLE", Toast.LENGTH_SHORT).show();
-            //if the user clicks try again, layout will be GONE.
+            sound.playGameOver();
+            showGameOver();
 
-            //load Another set of question
-            livesCurrent = 3;
-            loadQuestion();
-            ans1.setAlpha(1.0f);
-            ans2.setAlpha(1.0f);
-            ans3.setAlpha(1.0f);
-            ans4.setAlpha(1.0f);
-            heart3.setVisibility(View.VISIBLE);
-            heart2.setVisibility(View.VISIBLE);
-            isHintClicked = false;
-            ans1.setVisibility(View.VISIBLE);
-            ans2.setVisibility(View.VISIBLE);
-            ans3.setVisibility(View.VISIBLE);
-            ans4.setVisibility(View.VISIBLE);
-
-            countDownTimer.cancel();
-            //finish();
         }
     }
 
+    private void showGameOver(){
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.activity_game_over_2);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Window window = dialog.getWindow();
+        window.setLayout(RecyclerView.LayoutParams.MATCH_PARENT,RecyclerView.LayoutParams.MATCH_PARENT);
+        window.setGravity(Gravity.CENTER);
+
+        ImageButton btnTryAgain = dialog.findViewById(R.id.tryAgain);
+        ImageButton btnHome = dialog.findViewById(R.id.homeBtn);
+        ImageButton btnSettings = dialog.findViewById(R.id.settingsBtn);
+        ImageButton btnBack = dialog.findViewById(R.id.backBtn3);
+
+        btnTryAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sound.playClick();
+                //if the user clicks try again, layout will be GONE.
+                //load Another set of question
+                startCountdown();
+                livesCurrent = 3;
+                loadQuestion();
+                ans1.setAlpha(1.0f);
+                ans2.setAlpha(1.0f);
+                ans3.setAlpha(1.0f);
+                ans4.setAlpha(1.0f);
+                heart3.setVisibility(View.VISIBLE);
+                heart2.setVisibility(View.VISIBLE);
+                isHintClicked = false;
+                ans1.setVisibility(View.VISIBLE);
+                ans2.setVisibility(View.VISIBLE);
+                ans3.setVisibility(View.VISIBLE);
+                ans4.setVisibility(View.VISIBLE);
+
+                dialog.dismiss();
+            }
+        });
+
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sound.playClick();
+                stopService(new Intent(ActivityQuestions.this, MusicService.class));
+                Intent intent = new Intent(ActivityQuestions.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sound.playClick();
+                Intent intentLoadNewActivity = new Intent(ActivityQuestions.this, ActivitySettings.class);
+                startActivity(intentLoadNewActivity);
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sound.playClick();
+                finish();
+            }
+        });
+
+        dialog.show();
+    }
 
     void loadQuestion() {
 

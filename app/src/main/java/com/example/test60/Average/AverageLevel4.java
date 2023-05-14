@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import com.example.test60.Menu.ActivityCongrats;
 import com.example.test60.Menu.ActivityGameOver;
 import com.example.test60.R;
+import com.example.test60.Utilities.GlobalApplication;
+import com.example.test60.Utilities.SoundPlayer;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class AverageLevel4 extends AppCompatActivity {
@@ -28,8 +30,9 @@ public class AverageLevel4 extends AppCompatActivity {
     View avatar;
     Bitmap bitmap;
     float xDown = 0, yDown = 0;
-    Button buttonUp, buttonDown, buttonLeft, buttonRight;
+    Button buttonUp, buttonDown, buttonLeft, buttonRight, reset;
     private boolean gameEnded =false;
+    private SoundPlayer sound;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -44,6 +47,18 @@ public class AverageLevel4 extends AppCompatActivity {
         chartt= findViewById(R.id.chartt);
         mazeMap = findViewById(R.id.mazeMap);
 
+        sound = ((GlobalApplication) getApplication()).getSoundPlayer();
+
+        reset = findViewById(R.id.button3);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sound.playReset();
+                finish();
+                startActivity(new Intent(AverageLevel4.this, AverageLevel4.class));
+                overridePendingTransition(0,0);
+            }
+        });
 
 //setting character config
         SharedPreferences pref = getApplicationContext().getSharedPreferences("settings", MODE_PRIVATE);
@@ -232,6 +247,8 @@ public class AverageLevel4 extends AppCompatActivity {
 
             if (red >= yellowThreshold && green >= yellowThreshold && blue < yellowThreshold) {
                 if (!gameEnded) {
+                    sound.stopHitWall();
+                    sound.playAfterMaze();
                     gameEnded = true;
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
@@ -250,11 +267,14 @@ public class AverageLevel4 extends AppCompatActivity {
 
             } else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold) {
                 lives--;
+                sound.playHitWall();
                 if (lives == 0) {
+                    sound.playGameOver();
                     gameOver = true;
                     Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
                     startActivity(intent);
                     finish();
+                    sound.stopHitWall();
                 } else {
                     // Move the chartt back to the previous position
                     chartt.setX(previousX);
