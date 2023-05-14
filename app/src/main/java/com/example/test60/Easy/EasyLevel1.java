@@ -17,8 +17,10 @@ import android.widget.ImageView;
 
 import com.example.test60.Menu.ActivityCongrats;
 import com.example.test60.Menu.ActivityGameOver;
+import com.example.test60.Menu.MainActivity;
 import com.example.test60.R;
 import com.example.test60.Utilities.GlobalApplication;
+import com.example.test60.Utilities.MusicService;
 import com.example.test60.Utilities.SoundPlayer;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -31,7 +33,7 @@ public class EasyLevel1 extends AppCompatActivity {
     float xDown = 0, yDown = 0;
     Button buttonUp, buttonDown, buttonLeft, buttonRight; //eto yung i-ccopy per level sa mga activity
 
-    Button btnReset;
+    Button btnReset, home;
     private boolean gameEnded = false;
 
     private SoundPlayer sound;
@@ -54,6 +56,17 @@ public class EasyLevel1 extends AppCompatActivity {
         chartt= findViewById(R.id.chartt);
         mazeMap = findViewById(R.id.mazeMap);
 
+
+        home = findViewById(R.id.button2);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sound.playClick();
+                Intent intent = new Intent(EasyLevel1.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
 
         btnReset = findViewById(R.id.button3);
         btnReset.setOnClickListener(new View.OnClickListener() {

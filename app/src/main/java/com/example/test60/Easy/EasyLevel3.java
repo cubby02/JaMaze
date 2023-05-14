@@ -17,6 +17,7 @@ import android.widget.ImageView;
 
 import com.example.test60.Menu.ActivityCongrats;
 import com.example.test60.Menu.ActivityGameOver;
+import com.example.test60.Menu.MainActivity;
 import com.example.test60.R;
 import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.SoundPlayer;
@@ -53,6 +54,17 @@ public class EasyLevel3 extends AppCompatActivity {
 
         //setting character config
         SharedPreferences pref = getApplicationContext().getSharedPreferences("settings", MODE_PRIVATE);
+
+        Button home = findViewById(R.id.button2);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sound.playClick();
+                Intent intent = new Intent(EasyLevel3.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
 
         btnReset = findViewById(R.id.button3);
         btnReset.setOnClickListener(new View.OnClickListener() {

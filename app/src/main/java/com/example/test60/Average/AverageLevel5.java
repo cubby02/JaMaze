@@ -15,8 +15,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.test60.Easy.EasyLevel5;
 import com.example.test60.Menu.ActivityCongrats;
 import com.example.test60.Menu.ActivityGameOver;
+import com.example.test60.Menu.MainActivity;
 import com.example.test60.R;
 import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.SoundPlayer;
@@ -48,6 +50,17 @@ public class AverageLevel5 extends AppCompatActivity {
         sound = ((GlobalApplication) getApplication()).getSoundPlayer();
         chartt= findViewById(R.id.chartt);
         mazeMap = findViewById(R.id.mazeMap);
+
+        Button home = findViewById(R.id.button2);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sound.playClick();
+                Intent intent = new Intent(AverageLevel5.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
 
         reset = findViewById(R.id.button3);
         reset.setOnClickListener(new View.OnClickListener() {

@@ -372,7 +372,6 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
                 //if user clicks continue, the following code will be executed.
                 if(diff.trim().equals("easy")){
                     if(counter == 0){
-
                         Intent intent = new Intent(getApplicationContext(), EasyLevel2.class);
                         startActivity(intent);
                     }else if(counter==1){
