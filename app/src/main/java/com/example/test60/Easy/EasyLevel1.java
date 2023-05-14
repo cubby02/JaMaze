@@ -14,11 +14,14 @@ import android.graphics.Color;
 import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.test60.Menu.ActivityCongrats;
 import com.example.test60.Menu.ActivityGameOver;
+import com.example.test60.Menu.ActivityQuestions;
 import com.example.test60.Menu.MainActivity;
 import com.example.test60.R;
+import com.example.test60.Utilities.DifficultiesAndLevels;
 import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.MusicService;
 import com.example.test60.Utilities.SoundPlayer;
@@ -35,6 +38,7 @@ public class EasyLevel1 extends AppCompatActivity {
 
     Button btnReset, home;
     private boolean gameEnded = false;
+    private DifficultiesAndLevels gameProgress;
 
     private SoundPlayer sound;
 
@@ -61,10 +65,12 @@ public class EasyLevel1 extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 sound.playClick();
                 Intent intent = new Intent(EasyLevel1.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+
             }
         });
 
@@ -273,14 +279,17 @@ public class EasyLevel1 extends AppCompatActivity {
                     gameEnded = true;
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
-
                     editor.putInt("lives", 3);
                     editor.commit();
 
+                    gameProgress = new DifficultiesAndLevels(this);
+                    gameProgress.unlockLevel("easy2_unlocked");
+                    Toast.makeText(EasyLevel1.this, "easy2_unlocked "+gameProgress.isLevelUnlocked("easy2_unlocked") , Toast.LENGTH_LONG).show();
                     buttonUp.setOnTouchListener(null);
                     buttonRight.setOnTouchListener(null);
                     buttonLeft.setOnTouchListener(null);
                     buttonDown.setOnTouchListener(null);
+
                     Intent intent = new Intent(getApplicationContext(), ActivityCongrats.class);
                     startActivity(intent);
                     finish();

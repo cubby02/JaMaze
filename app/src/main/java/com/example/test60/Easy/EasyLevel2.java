@@ -20,6 +20,7 @@ import com.example.test60.Menu.ActivityGameOver;
 import com.example.test60.Menu.ActivityQuestions;
 import com.example.test60.Menu.MainActivity;
 import com.example.test60.R;
+import com.example.test60.Utilities.DifficultiesAndLevels;
 import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.SoundPlayer;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -33,6 +34,7 @@ public class EasyLevel2 extends AppCompatActivity {
     Bitmap bitmap;
     float xDown = 0, yDown = 0;
     private boolean gameEnded = false;
+    private DifficultiesAndLevels gameProgress;
     Button buttonUp, buttonDown, buttonLeft, buttonRight;
     Button btnReset;
 
@@ -267,6 +269,10 @@ public class EasyLevel2 extends AppCompatActivity {
                     sound.playAfterMaze();
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
+                    gameProgress = new DifficultiesAndLevels(this);
+
+                    gameProgress.unlockLevel("easy3_unlocked");
+
 
                     editor.putInt("lives", 3);
                     editor.commit();

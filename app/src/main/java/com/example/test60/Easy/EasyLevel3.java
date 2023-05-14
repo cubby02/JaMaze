@@ -19,6 +19,7 @@ import com.example.test60.Menu.ActivityCongrats;
 import com.example.test60.Menu.ActivityGameOver;
 import com.example.test60.Menu.MainActivity;
 import com.example.test60.R;
+import com.example.test60.Utilities.DifficultiesAndLevels;
 import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.SoundPlayer;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -34,6 +35,7 @@ public class EasyLevel3 extends AppCompatActivity {
 
     Button buttonUp, buttonDown, buttonLeft, buttonRight;
     private boolean gameEnded = false;
+    private DifficultiesAndLevels gameProgress;
     private SoundPlayer sound;
     Button btnReset;
     @SuppressLint("ClickableViewAccessibility")
@@ -270,6 +272,8 @@ public class EasyLevel3 extends AppCompatActivity {
 
                     editor.putInt("lives", 3);
                     editor.commit();
+                    gameProgress = new DifficultiesAndLevels(this);
+                    gameProgress.unlockLevel("easy4_unlocked");
 
                     buttonUp.setOnTouchListener(null);
                     buttonRight.setOnTouchListener(null);
