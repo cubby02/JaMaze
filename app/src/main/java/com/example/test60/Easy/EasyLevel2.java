@@ -29,7 +29,7 @@ public class EasyLevel2 extends AppCompatActivity {
     View avatar;
     Bitmap bitmap;
     float xDown = 0, yDown = 0;
-
+    private boolean gameEnded = false;
     Button buttonUp, buttonDown, buttonLeft, buttonRight;
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -73,16 +73,20 @@ public class EasyLevel2 extends AppCompatActivity {
 
         buttonUp.setOnTouchListener(new View.OnTouchListener() {
             private Handler handler;
+            private float previousX;
+            private float previousY;
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        previousX = chartt.getX();
+                        previousY = chartt.getY();
                         handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 chartt.setY(chartt.getY() - 10f);
-                                checkCollision();
+                                checkCollision(previousX, previousY);
                                 handler.postDelayed(this, 50); // move every 50 milliseconds
                             }
                         }, 500); // wait 500 milliseconds before starting to move
@@ -101,16 +105,21 @@ public class EasyLevel2 extends AppCompatActivity {
 
         buttonDown.setOnTouchListener(new View.OnTouchListener() {
             private Handler handler;
+            private float previousX;
+            private float previousY;
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        previousX = chartt.getX();
+                        previousY = chartt.getY();
+
                         handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 chartt.setY(chartt.getY() + 10f);
-                                checkCollision();
+                                checkCollision(previousX, previousY);
                                 handler.postDelayed(this, 50); // move every 50 milliseconds
                             }
                         }, 500); // wait 500 milliseconds before starting to move
@@ -128,16 +137,20 @@ public class EasyLevel2 extends AppCompatActivity {
 
         buttonLeft.setOnTouchListener(new View.OnTouchListener() {
             private Handler handler;
+            private float previousX;
+            private float previousY;
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        previousX = chartt.getX();
+                        previousY = chartt.getY();
                         handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 chartt.setX(chartt.getX() - 10f);
-                                checkCollision();
+                                checkCollision(previousX, previousY);
                                 handler.postDelayed(this, 50); // move every 50 milliseconds
                             }
                         }, 500); // wait 500 milliseconds before starting to move
@@ -155,25 +168,32 @@ public class EasyLevel2 extends AppCompatActivity {
 
         buttonRight.setOnTouchListener(new View.OnTouchListener() {
             private Handler handler;
+            private float previousX;
+            private float previousY;
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        previousX = chartt.getX();
+                        previousY = chartt.getY();
                         handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 chartt.setX(chartt.getX() + 10f);
-                                checkCollision();
+                                checkCollision(previousX, previousY);
                                 handler.postDelayed(this, 50); // move every 50 milliseconds
                             }
                         }, 500); // wait 500 milliseconds before starting to move
+
                         return true;
                     case MotionEvent.ACTION_UP:
+
                         if (handler != null) {
                             handler.removeCallbacksAndMessages(null);
                             handler = null;
                         }
+
                         return true;
                 }
                 return false;
@@ -183,7 +203,17 @@ public class EasyLevel2 extends AppCompatActivity {
     }
 
 
-    private void checkCollision() {
+    private boolean gameOver = false;
+
+    //eto yung i-ccopy per level sa mga activity
+    private int lives = 3;
+    @SuppressLint("ClickableViewAccessibility")
+    private void checkCollision(float previousX, float previousY) {
+
+        if(gameOver){
+            return;
+        }
+
         mazeMap.setDrawingCacheEnabled(true);
         mazeMap.buildDrawingCache(true);
 
@@ -204,29 +234,56 @@ public class EasyLevel2 extends AppCompatActivity {
             int whiteThreshold = 200;
 
             if (red >= yellowThreshold && green >= yellowThreshold && blue < yellowThreshold) {
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref.edit();
+                if (!gameEnded) {
+                    gameEnded = true;
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
 
-                editor.putInt("lives", 3);
-                editor.commit();
+                    editor.putInt("lives", 3);
+                    editor.commit();
 
-                Intent intent = new Intent(getApplicationContext(), ActivityCongrats.class);
-                startActivity(intent);
-                finish();
-            } else if (red < blackThreshold && green < blackThreshold && blue < blackThreshold) {
-                Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
-                startActivity(intent);
-                finish();
+                    buttonUp.setOnTouchListener(null);
+                    buttonRight.setOnTouchListener(null);
+                    buttonLeft.setOnTouchListener(null);
+                    buttonDown.setOnTouchListener(null);
+                    Intent intent = new Intent(getApplicationContext(), ActivityCongrats.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             } else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold) {
-                // Detects white color
+                lives--;
+                if (lives == 0) {
+                    if(!gameEnded){
+                        gameOver = true;
+                        Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                } else {
+                    // Move the chartt back to the previous position
+                    chartt.setX(previousX);
+                    chartt.setY(previousY);
+                }
+
+
             }
             // reserved for white color detection.
             // else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold)
         } else {
             // Launch game over activity and finish current activity
-            Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
-            startActivity(intent);
-            finish();
+            if (x < 0) {
+                chartt.setX(0);
+            } else if (x > mazeMap.getWidth() - chartt.getWidth()) {
+                chartt.setX(mazeMap.getWidth() - chartt.getWidth());
+            }
+
+            if (y < 0) {
+                chartt.setY(0);
+            } else if (y > mazeMap.getHeight() - chartt.getHeight()) {
+                chartt.setY(mazeMap.getHeight() - chartt.getHeight());
+            }
+
         }
     }
 

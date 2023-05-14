@@ -204,10 +204,12 @@ public class EasyLevel1 extends AppCompatActivity {
     }
 
     private boolean gameOver = false;
-    private int lives = 3;
+
     //eto yung i-ccopy per level sa mga activity
+    private int lives = 3;
     @SuppressLint("ClickableViewAccessibility")
     private void checkCollision(float previousX, float previousY) {
+
         if(gameOver){
             return;
         }
