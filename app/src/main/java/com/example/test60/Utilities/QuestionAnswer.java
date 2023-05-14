@@ -126,21 +126,21 @@ public class QuestionAnswer {
 
 
     public static HardQuestions[] hardQuestions = {
-        new HardQuestions("What is the output of the following:", R.drawable.about, "50 is found at index: 3", "50 is found at index: 5", "50 is found at index: 2", "50 is found at index: 0"),
-        new HardQuestions("What is the output of the program when executed?", R.drawable.about, "The sum is: 15 ", "The sum is: 1 ", "The sum is: 10 ", "The sum is: 6"),
-        new HardQuestions("What is the output of the program when executed?", R.drawable.about, "\"Alice\", \"Bob\" ", "\"Bob\", \"Alice\"", "\"Bob\", \"Bob\" ", "\"Alice\", \"Alice\" "),
-        new HardQuestions("What is the output of the program when executed?", R.drawable.about, "2", "1", "10", "20"),
-        new HardQuestions("What is the output of the program:", R.drawable.about, "syntax error", "i", "S", "200"),
+        new HardQuestions("What is the output of the following:", R.drawable.hard_quiz_1, "50 is found at index: 3", "50 is found at index: 5", "50 is found at index: 2", "50 is found at index: 0"),
+        new HardQuestions("What is the output of the program when executed?", R.drawable.hard_quiz_2, "The sum is: 15 ", "The sum is: 1 ", "The sum is: 10 ", "The sum is: 6"),
+        new HardQuestions("What is the output of the program when executed?", R.drawable.hard_quiz_3, "\"Alice\", \"Bob\" ", "\"Bob\", \"Alice\"", "\"Bob\", \"Bob\" ", "\"Alice\", \"Alice\" "),
+        new HardQuestions("What is the output of the program when executed?", R.drawable.hard_quiz_4, "2", "1", "10", "20"),
+        new HardQuestions("What is the output of the program:", R.drawable.hard_quiz_5, "syntax error", "i", "S", "200"),
 
-        new HardQuestions("what is the output of the following:", R.drawable.about, "true, true, false", "True, ok, true", "true, TRue, ok", "ok, treu, true"),
-        new HardQuestions("What is output of the following:", R.drawable.about, "6 6 6, 12 12 12, 18, 18, 18", "8 8 8, 16 16 16, 24 24 24", "2 2 2, 4 4 4, 6 6 6", "4 4 4, 8 8 8, 12 12 12"),
-        new HardQuestions("Where will be the most chance of the garbage collector being invoked?", R.drawable.about, "Garbage collector never invoked in methodA()", "after line 11", "after line 9 ", "after line 10"),
-        new HardQuestions("After line 8 runs. how many objects are eligible for garbage collection?", R.drawable.about, "1", "0", "2", "3"),
-        new HardQuestions("What is the output of the following:", R.drawable.about, "foo bar", "foo", "MyThread foo", "MyThread bar"),
+        new HardQuestions("what is the output of the following:", R.drawable.hard_quiz_6, "true, true, false", "True, ok, true", "true, TRue, ok", "ok, treu, true"),
+        new HardQuestions("What is output of the following:", R.drawable.hard_quiz_7, "6 6 6, 12 12 12, 18, 18, 18", "8 8 8, 16 16 16, 24 24 24", "2 2 2, 4 4 4, 6 6 6", "4 4 4, 8 8 8, 12 12 12"),
+        new HardQuestions("Where will be the most chance of the garbage collector being invoked?", R.drawable.hard_quiz_8, "Garbage collector never invoked in methodA()", "after line 11", "after line 9 ", "after line 10"),
+        new HardQuestions("After line 8 runs. how many objects are eligible for garbage collection?", R.drawable.hard_quiz_9, "1", "0", "2", "3"),
+        new HardQuestions("What is the output of the following:", R.drawable.hard_quiz_10, "foo bar", "foo", "MyThread foo", "MyThread bar"),
 
-        new HardQuestions("What will be the output of the program", R.drawable.about, "An exception is thrown at runtime", "args[2] = null", "args[2] = 3", "args[2] = 2"),
-        new HardQuestions("what will be the output of the program:", R.drawable.about, "compilation fails", "An exception is thrown at runtime", "x=1", "x=0"),
-        new HardQuestions("What will be the output of the following:", R.drawable.about, "false true", "true true", "true false", "false false"),
+        new HardQuestions("What will be the output of the program", R.drawable.hard_quiz_11, "An exception is thrown at runtime", "args[2] = null", "args[2] = 3", "args[2] = 2"),
+        new HardQuestions("what will be the output of the program:", R.drawable.hard_quiz_12, "compilation fails", "An exception is thrown at runtime", "x=1", "x=0"),
+        new HardQuestions("What will be the output of the following:", R.drawable.hard_quiz_15, "false true", "true true", "true false", "false false"),
     };
 
 
