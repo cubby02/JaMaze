@@ -37,20 +37,20 @@
                 android:id="@+id/imageButton8"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:background="@drawable/btn_lvl_1" />
+                android:background="@drawable/btn_locked" />
 
             <ImageButton
                 android:id="@+id/imageButton9"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_margin="15dp"
-                android:background="@drawable/btn_lvl_2" />
+                android:background="@drawable/btn_locked" />
 
             <ImageButton
                 android:id="@+id/imageButton10"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:background="@drawable/btn_lvl_3" />
+                android:background="@drawable/btn_locked" />
         </LinearLayout>
 
         <LinearLayout
@@ -64,13 +64,13 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginRight="15dp"
-                android:background="@drawable/btn_lvl_4" />
+                android:background="@drawable/btn_locked" />
 
             <ImageButton
                 android:id="@+id/imageButton12"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:background="@drawable/btn_lvl_5" />
+                android:background="@drawable/btn_locked" />
         </LinearLayout>
 
     </LinearLayout>
