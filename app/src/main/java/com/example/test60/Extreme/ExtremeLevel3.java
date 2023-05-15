@@ -19,6 +19,7 @@ import com.example.test60.Menu.ActivityCongrats;
 import com.example.test60.Menu.ActivityGameOver;
 import com.example.test60.Menu.MainActivity;
 import com.example.test60.R;
+import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.SoundPlayer;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -36,7 +37,7 @@ public class ExtremeLevel3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_extreme_level_3);
-
+        sound = ((GlobalApplication) getApplication()).getSoundPlayer();
         buttonUp = findViewById(R.id.btn_up);
         buttonDown = findViewById(R.id.btn_down);
         buttonLeft = findViewById(R.id.btn_left);
