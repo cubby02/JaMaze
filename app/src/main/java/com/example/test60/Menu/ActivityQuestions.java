@@ -83,6 +83,8 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
 
     private boolean isHintClicked = false;
 
+    private ImageView questions_img;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +104,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         hint = findViewById(R.id.hint);
         countdownButton = findViewById(R.id.timer);
         txtLevel = findViewById(R.id.txtLevel);
+        questions_img = findViewById(R.id.questions_img);
 
         ans1.setOnClickListener(this);
         ans2.setOnClickListener(this);
@@ -173,25 +176,30 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
             txtLevel.setText("LEVEL 1");
             countdownValue = 40;
             hardQuizData = QuestionAnswer.hardQuestions;
+            questions_img.setVisibility(View.VISIBLE);
         }else if(counter == 11){
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 2");
             countdownValue = 40;
             hardQuizData = QuestionAnswer.hardQuestions;
+            questions_img.setVisibility(View.VISIBLE);
         }else if(counter == 12){
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 3");
             countdownValue = 40;
+            questions_img.setVisibility(View.VISIBLE);
         }else if(counter == 13){
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 4");
             countdownValue = 40;
             hardQuizData = QuestionAnswer.hardQuestions;
+            questions_img.setVisibility(View.VISIBLE);
         }else if(counter == 14){
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 5");
             countdownValue = 40;
             hardQuizData = QuestionAnswer.hardQuestions;
+            questions_img.setVisibility(View.VISIBLE);
         }else if(counter == 15){
             title.setImageResource(R.drawable.extreme_text);
             txtLevel.setText("LEVEL 1");
@@ -239,6 +247,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
                 tmpArray.add(quizDatum.getChoice1()); //choice1
                 tmpArray.add(quizDatum.getChoice2()); //choice2
                 tmpArray.add(quizDatum.getChoice3()); //choice3
+                tmpArray.add(String.valueOf(quizDatum.getImageId())); //int img
 
                 //add tmpArray to quizArray
                 quizArray.add(tmpArray);
@@ -687,8 +696,13 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
 
         //Set question and right Answer
         //Array format {"Question", "Right Answer", "Choice1", "Choice2", "3"}
+        //Array format {"Question", "Right Answer", "Choice1", "Choice2", "3", String.valueOf(Image)} <- for hard questions
         rightAnswer = quiz.get(1);
         questionsTextview.setText(quiz.get(0));
+        if(hardQuizData != null){
+            questions_img.setImageResource(Integer.parseInt(quiz.get(5)));
+            quiz.remove(5);
+        }
 
         //remove question from quiz and shuffle choices
         quiz.remove(0);
