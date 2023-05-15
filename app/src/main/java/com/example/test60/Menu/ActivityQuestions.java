@@ -432,8 +432,6 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         }
 
 
-
-
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -444,7 +442,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
                     if(counter == 0){
 
                         gameProgress.unlockLevel("easy2_unlocked");
-                        Toast.makeText(ActivityQuestions.this, "easy2_unlocked "+gameProgress.isLevelUnlocked("easy2_unlocked") , Toast.LENGTH_LONG).show();
+                        //Toast.makeText(ActivityQuestions.this, "easy2_unlocked "+gameProgress.isLevelUnlocked("easy2_unlocked") , Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(), EasyLevel2.class);
                         startActivity(intent);
                     }else if(counter==1){
@@ -488,42 +486,39 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
                 }else if(diff.trim().equals("hard")){
                     if(counter == 10){
 
-                        Intent intent = new Intent(getApplicationContext(), HardLevel1.class);
-                        startActivity(intent);
-                    }else if(counter==11){
                         Intent intent = new Intent(getApplicationContext(), HardLevel2.class);
                         startActivity(intent);
-                    }else if(counter==12){
+                    }else if(counter==11){
                         Intent intent = new Intent(getApplicationContext(), HardLevel3.class);
                         startActivity(intent);
-                    }else if(counter==13){
+                    }else if(counter==12){
                         Intent intent = new Intent(getApplicationContext(), HardLevel4.class);
+                        startActivity(intent);
+                    }else if(counter==13){
+                        Intent intent = new Intent(getApplicationContext(), HardLevel5.class);
                         startActivity(intent);
                     }else if(counter==14){
                         editor.putString("diff", "extreme");
                         editor.commit();
 
-                        Intent intent = new Intent(getApplicationContext(), HardLevel5.class);
+                        Intent intent = new Intent(getApplicationContext(), ExtremeLevel1.class);
                         startActivity(intent);
                     }
                 }else if(diff.trim().equals("extreme")){
                     if(counter == 15){
 
-                        Intent intent = new Intent(getApplicationContext(), ExtremeLevel1.class);
-                        startActivity(intent);
-                    }else if(counter==16){
                         Intent intent = new Intent(getApplicationContext(), ExtremeLevel2.class);
                         startActivity(intent);
-                    }else if(counter==17){
+                    }else if(counter==16){
                         Intent intent = new Intent(getApplicationContext(), ExtremeLevel3.class);
                         startActivity(intent);
-                    }else if(counter==18){
+                    }else if(counter==17){
                         Intent intent = new Intent(getApplicationContext(), ExtremeLevel4.class);
                         startActivity(intent);
-                    }else if(counter==19){
+                    }else if(counter==18){
                         Intent intent = new Intent(getApplicationContext(), ExtremeLevel5.class);
                         startActivity(intent);
-                    }else if(counter==20){
+                    }else if(counter==19){
                         Intent intent = new Intent(getApplicationContext(), ActivityEasyLevelSelector.class);
                         startActivity(intent);
                     }
