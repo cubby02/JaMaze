@@ -35,15 +35,32 @@
         android:gravity="center_horizontal"
         android:layout_below="@id/msg2"
         android:id="@+id/starImage"
+        android:padding="20dp"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="200dp">
 
         <ImageView
             android:id="@+id/star"
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/msg2"
+            android:src="@drawable/star_img" />
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/msg2"
+            android:src="@drawable/star_img" />
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_below="@id/msg2"
             android:src="@drawable/star_img" />

@@ -9,9 +9,9 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:paddingTop="50dp"
-        android:paddingStart="50dp"
-        android:paddingEnd="50dp"
+        android:paddingTop="40dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
         android:paddingBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -23,31 +23,62 @@
             android:text="EXTREME"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:textSize="30sp"/>
+            android:textSize="20sp"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_toStartOf="@+id/button3"
             android:backgroundTint="@color/white"
             android:background="@drawable/ic_baseline_home_24" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button3"
-            android:layout_toStartOf="@+id/imageView9"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_toStartOf="@+id/linearLayout6"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:backgroundTint="@color/white"
             android:background="@drawable/ic_baseline_refresh_24" />
 
-        <ImageView
+        <LinearLayout
             android:layout_alignParentEnd="true"
-            android:id="@+id/imageView9"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:srcCompat="@drawable/ic_baseline_star_24"
-            app:tint="@color/light_yellow" />
+            android:id="@+id/linearLayout6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_toStartOf="@id/imageView10"
+                android:id="@+id/imageView11"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/ic_baseline_star_24"
+                app:tint="@color/gray" />
+
+            <ImageView
+                android:layout_toStartOf="@id/imageView10"
+                android:id="@+id/imageView9"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/ic_baseline_star_24"
+                app:tint="@color/gray" />
+
+            <ImageView
+                android:layout_toStartOf="@id/imageView10"
+                android:id="@+id/imageView12"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/ic_baseline_star_24"
+                app:tint="@color/gray" />
+
+            <ImageView
+                android:layout_alignParentEnd="true"
+                android:id="@+id/imageView10"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/ic_baseline_star_24"
+                app:tint="@color/gray" />
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -88,7 +119,7 @@
             android:id="@+id/mazeMap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/extreme_5"
+            android:background="@drawable/extreme_5b"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -99,10 +130,10 @@
             android:layout_height="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.144"
+            app:layout_constraintHorizontal_bias="0.021"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.96" />
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

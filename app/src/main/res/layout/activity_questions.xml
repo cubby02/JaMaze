@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -18,7 +19,7 @@
             <ImageView
                 android:id="@+id/imageView8"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
@@ -66,28 +67,46 @@
                     android:layout_centerVertical="true"/>
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/questions"
-                android:layout_below="@id/relativeLayout"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="This is question. what is the blablabl hatdog ecamples alsdhfals asdlfh kjsdhfkjasdf sdf asdf asd asdfasdf "
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:layout_marginTop="30dp"
-                android:textSize="22dp"
-                android:textStyle="bold" />
+           <RelativeLayout
+               android:layout_marginTop="10dp"
+               android:layout_marginStart="20dp"
+               android:layout_marginEnd="20dp"
+               android:layout_marginBottom="10dp"
+               android:id="@+id/relativeLayout4"
+               android:layout_width="match_parent"
+               android:layout_below="@id/relativeLayout"
+               android:layout_height="wrap_content">
+               <TextView
+                   android:id="@+id/questions"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="This is question. what is the blablabl hatdog ecamples alsdhfals asdlfh kjsdhfkjasdf sdf asdf asd asdfasdf "
+                   android:textAlignment="center"
+                   android:textColor="@color/white"
+                   android:textSize="20dp"
+                   android:textStyle="bold" />
+
+               <ImageView
+                   android:visibility="gone"
+                   tools:visibility="visible"
+                   android:id="@+id/questions_img"
+                   android:layout_marginStart="20dp"
+                   android:layout_marginEnd="20dp"
+                   tools:src="@drawable/hard_quiz_1"
+                   android:layout_below="@+id/questions"
+                   android:layout_width="match_parent"
+                   android:layout_height="200dp"
+                   android:textAlignment="center"
+                   android:textColor="@color/white" />
+
+           </RelativeLayout>
 
             <ImageView
                 android:id="@+id/line"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="@color/white"
-                android:layout_marginTop="30dp"
-                android:layout_below="@id/questions"/>
-
+                android:layout_below="@id/relativeLayout4"/>
 
             <LinearLayout
                 android:layout_below="@+id/line"

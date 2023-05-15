@@ -29,50 +29,196 @@
             android:src="@drawable/average_flag"/>
 
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton8"
+            <RelativeLayout
+                android:id="@+id/relativeLayout1"
                 android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/btn_locked" />
+                android:layout_height="70dp">
 
-            <ImageButton
-                android:id="@+id/imageButton9"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="15dp"
-                android:background="@drawable/btn_locked" />
+                <ImageButton
+                    android:id="@+id/imageButton8"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/btn_lvl_1" />
 
-            <ImageButton
-                android:id="@+id/imageButton10"
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/linearLayout6"
+                    android:gravity="center_horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_toStartOf="@id/imageView10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/star_img" />
+                    <ImageView
+                        android:layout_toStartOf="@id/imageView10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/star_img" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:id="@+id/relativeLayout2"
                 android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/btn_locked" />
+                android:layout_height="70dp">
+
+                <ImageButton
+                    android:id="@+id/imageButton9"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/btn_locked" />
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/linearLayout7"
+                    android:gravity="center_horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_toStartOf="@id/imageView10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/star_img" />
+                    <ImageView
+                        android:layout_toStartOf="@id/imageView10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/star_img" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout3"
+                android:layout_width="70dp"
+                android:layout_height="70dp">
+
+                <ImageButton
+                    android:id="@+id/imageButton10"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/btn_locked" />
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/linearLayout8"
+                    android:gravity="center_horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_toStartOf="@id/imageView10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/star_img" />
+                    <ImageView
+                        android:layout_toStartOf="@id/imageView10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/star_img" />
+                </LinearLayout>
+            </RelativeLayout>
+
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton11"
+            <RelativeLayout
+                android:id="@+id/relativeLayout4"
                 android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/btn_locked" />
+                android:layout_height="70dp">
 
-            <ImageButton
-                android:id="@+id/imageButton12"
+                <ImageButton
+                    android:id="@+id/imageButton11"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/btn_locked" />
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/linearLayout9"
+                    android:gravity="center_horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_toStartOf="@id/imageView10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/star_img" />
+                    <ImageView
+                        android:layout_toStartOf="@id/imageView10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/star_img" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginStart="20dp"
+                android:id="@+id/relativeLayout5"
                 android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/btn_locked" />
+                android:layout_height="70dp">
+
+                <ImageButton
+                    android:id="@+id/imageButton12"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/btn_locked" />
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/linearLayout10"
+                    android:gravity="center_horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_toStartOf="@id/imageView10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/star_img" />
+                    <ImageView
+                        android:layout_toStartOf="@id/imageView10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/star_img" />
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
+
 
     </LinearLayout>
 
