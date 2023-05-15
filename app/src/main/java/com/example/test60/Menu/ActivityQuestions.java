@@ -41,6 +41,7 @@ import com.example.test60.Extreme.ExtremeLevel4;
 import com.example.test60.Extreme.ExtremeLevel5;
 import com.example.test60.Easy.EasyLevel1;
 import com.example.test60.Easy.EasyLevel2;
+import com.example.test60.Utilities.DifficultiesAndLevels;
 import com.example.test60.Utilities.EasyAverageQuestions;
 import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.HardQuestions;
@@ -55,6 +56,8 @@ import java.util.List;
 import java.util.Random;
 
 public class ActivityQuestions extends AppCompatActivity implements View.OnClickListener {
+
+    private DifficultiesAndLevels gameProgress;
 
     public SoundPlayer sound;
     TextView questionsTextview,txtLevel;
@@ -105,7 +108,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         ans3.setOnClickListener(this);
         ans4.setOnClickListener(this);
 
-
+        gameProgress = new DifficultiesAndLevels(ActivityQuestions.this);
 
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
@@ -372,6 +375,9 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
                 //if user clicks continue, the following code will be executed.
                 if(diff.trim().equals("easy")){
                     if(counter == 0){
+
+                        gameProgress.unlockLevel("easy2_unlocked");
+                        Toast.makeText(ActivityQuestions.this, "easy2_unlocked "+gameProgress.isLevelUnlocked("easy2_unlocked") , Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(), EasyLevel2.class);
                         startActivity(intent);
                     }else if(counter==1){

@@ -282,9 +282,7 @@ public class EasyLevel1 extends AppCompatActivity {
                     editor.putInt("lives", 3);
                     editor.commit();
 
-                    gameProgress = new DifficultiesAndLevels(this);
-                    gameProgress.unlockLevel("easy2_unlocked");
-                    Toast.makeText(EasyLevel1.this, "easy2_unlocked "+gameProgress.isLevelUnlocked("easy2_unlocked") , Toast.LENGTH_LONG).show();
+
                     buttonUp.setOnTouchListener(null);
                     buttonRight.setOnTouchListener(null);
                     buttonLeft.setOnTouchListener(null);
