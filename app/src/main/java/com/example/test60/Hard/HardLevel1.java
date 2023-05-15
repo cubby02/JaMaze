@@ -19,6 +19,7 @@ import com.example.test60.Menu.ActivityCongrats;
 import com.example.test60.Menu.ActivityGameOver;
 import com.example.test60.Menu.MainActivity;
 import com.example.test60.R;
+import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.SoundPlayer;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -41,7 +42,7 @@ public class HardLevel1 extends AppCompatActivity {
         buttonDown = findViewById(R.id.btn_down);
         buttonLeft = findViewById(R.id.btn_left);
         buttonRight = findViewById(R.id.btn_right);
-
+        sound = ((GlobalApplication) getApplication()).getSoundPlayer();
         chartt= findViewById(R.id.chartt);
         mazeMap = findViewById(R.id.mazeMap);
         Button home = findViewById(R.id.button2);
