@@ -103,7 +103,7 @@ public class ActivityExtremeLevelSelector extends AppCompatActivity {
                 sound.playClick();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
-                editor.putInt("counter", 19);
+                editor.putInt("counter", 18);
                 editor.commit();
 
                 Intent intentLoadNewActivity = new Intent(ActivityExtremeLevelSelector.this, ExtremeLevel4.class);
