@@ -366,6 +366,73 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         ImageButton btnHome = dialog.findViewById(R.id.homeBtn);
         ImageButton btnSettings = dialog.findViewById(R.id.settingsBtn);
         ImageButton btnBack = dialog.findViewById(R.id.backBtn3);
+        if(counter==0){
+            gameProgress.unlockLevel("easy2_unlocked");
+        }
+       else if(counter ==1){
+            gameProgress.unlockLevel("easy3_unlocked");
+
+        }else if(counter ==2){
+            gameProgress.unlockLevel("easy4_unlocked");
+        }
+        else if(counter ==3){
+            gameProgress.unlockLevel("easy5_unlocked");
+        }
+        else if(counter ==4){
+            gameProgress.unlockLevel("average1_unlocked");
+        }
+        else if(counter ==5){
+            gameProgress.unlockLevel("average2_unlocked");
+        }
+        else if(counter ==6){
+            gameProgress.unlockLevel("average3_unlocked");
+        }
+        else if(counter ==7){
+            gameProgress.unlockLevel("average4_unlocked");
+        }
+        else if(counter ==8){
+            gameProgress.unlockLevel("average5_unlocked");
+        }
+        else if(counter ==9){
+            gameProgress.unlockLevel("hard1_unlocked");
+        }
+        else if(counter ==10){
+            gameProgress.unlockLevel("hard2_unlocked");
+        }
+        else if(counter ==11){
+            gameProgress.unlockLevel("hard3_unlocked");
+        }
+        else if(counter ==12){
+            gameProgress.unlockLevel("hard4_unlocked");
+        }
+        else if(counter ==13){
+            gameProgress.unlockLevel("hard5_unlocked");
+        }
+        else if(counter ==14){
+            gameProgress.unlockLevel("extreme1_unlocked");
+        }
+
+        else if(counter ==15){
+            gameProgress.unlockLevel("extreme2_unlocked");
+        }
+        else if(counter ==16){
+            gameProgress.unlockLevel("extreme3_unlocked");
+        }
+        else if(counter ==17){
+            gameProgress.unlockLevel("extreme4_unlocked");
+        }
+        else if(counter ==18){
+            gameProgress.unlockLevel("extreme5_unlocked");
+        }
+        else if(counter ==19){
+
+        }
+        else if(counter ==20){
+
+        }
+
+
+
 
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -381,6 +448,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
                         Intent intent = new Intent(getApplicationContext(), EasyLevel2.class);
                         startActivity(intent);
                     }else if(counter==1){
+
                         Intent intent = new Intent(getApplicationContext(), EasyLevel3.class);
                         startActivity(intent);
                     }else if(counter==2){

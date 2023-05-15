@@ -270,8 +270,8 @@ public class EasyLevel4 extends AppCompatActivity {
 
                     editor.putInt("lives", 3);
                     editor.commit();
-                     gameProgress = new DifficultiesAndLevels(this);
-                     gameProgress.unlockLevel("easy5_unlocked");
+
+
                     buttonUp.setOnTouchListener(null);
                     buttonRight.setOnTouchListener(null);
                     buttonLeft.setOnTouchListener(null);

@@ -48,7 +48,7 @@ public class AverageLevel5 extends AppCompatActivity {
         buttonLeft = findViewById(R.id.btn_left);
         buttonRight = findViewById(R.id.btn_right);
         sound = ((GlobalApplication) getApplication()).getSoundPlayer();
-        chartt= findViewById(R.id.chartt);
+        chartt = findViewById(R.id.chartt);
         mazeMap = findViewById(R.id.mazeMap);
 
         Button home = findViewById(R.id.button2);
@@ -69,7 +69,7 @@ public class AverageLevel5 extends AppCompatActivity {
                 sound.playReset();
                 finish();
                 startActivity(new Intent(AverageLevel5.this, AverageLevel5.class));
-                overridePendingTransition(0,0);
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -78,30 +78,26 @@ public class AverageLevel5 extends AppCompatActivity {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("settings", MODE_PRIVATE);
 
         String characterSetting = pref.getString("character", "null");
-        if(characterSetting.equals("null")){
+        if (characterSetting.equals("null")) {
             chartt.setImageResource(R.drawable.charmale1);
 
-        }else{
+        } else {
             String charPref = pref.getString("character", "null");
 
-            if(charPref.equals("charfemale1")){
+            if (charPref.equals("charfemale1")) {
                 chartt.setImageResource(R.drawable.charfemale1);
-            }else if(charPref.equals("charfemale2")){
+            } else if (charPref.equals("charfemale2")) {
                 chartt.setImageResource(R.drawable.charfemale2);
-            }else if(charPref.equals("charfemale3")){
+            } else if (charPref.equals("charfemale3")) {
                 chartt.setImageResource(R.drawable.charfemale3);
-            }else if(charPref.equals("charmale1")){
+            } else if (charPref.equals("charmale1")) {
                 chartt.setImageResource(R.drawable.charmale1);
-            }else if(charPref.equals("charmale2")){
+            } else if (charPref.equals("charmale2")) {
                 chartt.setImageResource(R.drawable.charmale2);
-            }else if(charPref.equals("charmale3")){
+            } else if (charPref.equals("charmale3")) {
                 chartt.setImageResource(R.drawable.charmale3);
             }
         }
-
-
-
-
 
 
         buttonUp.setOnTouchListener(new View.OnTouchListener() {
@@ -114,7 +110,7 @@ public class AverageLevel5 extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         handler = new Handler();
-                        previousX= chartt.getX();
+                        previousX = chartt.getX();
                         previousY = chartt.getY();
 
                         handler.postDelayed(new Runnable() {
@@ -237,11 +233,13 @@ public class AverageLevel5 extends AppCompatActivity {
             }
         });
     }
-    private boolean gameOver= false;
+
+    private boolean gameOver = false;
     private int lives = 3;
+
     @SuppressLint("ClickableViewAccessibility")
     private void checkCollision(float previousX, float previousY) {
-        if(gameOver){
+        if (gameOver) {
             return;
         }
 
@@ -288,13 +286,17 @@ public class AverageLevel5 extends AppCompatActivity {
                 lives--;
                 sound.playHitWall();
                 if (lives == 0) {
-                    sound.playGameOver();
-                    gameOver = true;
-                    Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
-                    startActivity(intent);
-                    finish();
-                    sound.stopHitWall();
+                    if (!gameEnded) {
+
+                        sound.playGameOver();
+                        gameOver = true;
+                        Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
+                        startActivity(intent);
+                        finish();
+                        sound.stopHitWall();
+                    }
                 } else {
+
                     // Move the chartt back to the previous position
                     chartt.setX(previousX);
                     chartt.setY(previousY);
@@ -320,6 +322,7 @@ public class AverageLevel5 extends AppCompatActivity {
 
         }
     }
+
     @Override
     public void onBackPressed() {
         new MaterialAlertDialogBuilder(this)

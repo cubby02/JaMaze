@@ -330,26 +330,31 @@ private SoundPlayer sound;
                     editor.putInt("lives", 3);
                     editor.commit();
 
+
                     buttonUp.setOnTouchListener(null);
                     buttonRight.setOnTouchListener(null);
                     buttonLeft.setOnTouchListener(null);
                     buttonDown.setOnTouchListener(null);
-                    finish();
                     Intent intent = new Intent(getApplicationContext(), ActivityCongrats.class);
                     startActivity(intent);
+                    finish();
                 }
 
             } else if (red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold) {
                 lives--;
                 sound.playHitWall();
                 if (lives == 0) {
-                    sound.playGameOver();
-                    gameOver = true;
-                    Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
-                    startActivity(intent);
-                    finish();
-                    sound.stopHitWall();
+                    if(!gameEnded){
+
+                        sound.playGameOver();
+                        gameOver = true;
+                        Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
+                        startActivity(intent);
+                        finish();
+                        sound.stopHitWall();
+                    }
                 } else {
+
                     // Move the chartt back to the previous position
                     chartt.setX(previousX);
                     chartt.setY(previousY);

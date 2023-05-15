@@ -52,14 +52,14 @@ public class ActivitySelectDifficulty extends AppCompatActivity {
         }
 
         ImageButton hardButton = findViewById(R.id.imageButton5);
-        if(!gameProgress.isLevelUnlocked("average1_unlocked")) {
+        if(!gameProgress.isLevelUnlocked("hard1_unlocked")) {
             hardButton.setEnabled(false); // Disable the button if the difficulty is locked
 
         }else {
             hardButton.setImageResource(R.drawable.hard_btn); // Set the unlocked image
         }
         ImageButton extremeButton = findViewById(R.id.imageButton6);
-        if(!gameProgress.isLevelUnlocked("average1_unlocked")) {
+        if(!gameProgress.isLevelUnlocked("extreme1_unlocked")) {
             extremeButton.setEnabled(false); // Disable the button if the difficulty is locked
 
         }else {

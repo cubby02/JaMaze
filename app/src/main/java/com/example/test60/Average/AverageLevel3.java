@@ -343,18 +343,21 @@ public class AverageLevel3 extends AppCompatActivity {
                 lives--;
                 sound.playHitWall();
                 if (lives == 0) {
-                    sound.playGameOver();
-                    gameOver = true;
-                    Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
-                    startActivity(intent);
-                    finish();
-                    sound.stopHitWall();
+                    if(!gameEnded){
+
+                        sound.playGameOver();
+                        gameOver = true;
+                        Intent intent = new Intent(getApplicationContext(), ActivityGameOver.class);
+                        startActivity(intent);
+                        finish();
+                        sound.stopHitWall();
+                    }
                 } else {
+
                     // Move the chartt back to the previous position
                     chartt.setX(previousX);
                     chartt.setY(previousY);
                 }
-
 
             }
             // reserved for white color detection.
