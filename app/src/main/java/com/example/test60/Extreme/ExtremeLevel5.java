@@ -22,6 +22,8 @@ import com.example.test60.R;
 import com.example.test60.Utilities.DifficultiesAndLevels;
 import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.SoundPlayer;
+import com.example.test60.databinding.ActivityExtremeLevel1Binding;
+import com.example.test60.databinding.ActivityExtremeLevel5Binding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class ExtremeLevel5 extends AppCompatActivity {
@@ -39,7 +41,17 @@ public class ExtremeLevel5 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_extreme_level_5);
+        ActivityExtremeLevel5Binding binding = ActivityExtremeLevel5Binding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+
+        DifficultiesAndLevels gameProgress = new DifficultiesAndLevels(this);
+        if(gameProgress.isGameComplete("game_completed")) {
+            binding.imageView9.setColorFilter(getResources().getColor(R.color.light_yellow));
+            binding.imageView10.setColorFilter(getResources().getColor(R.color.light_yellow));
+            binding.imageView11.setColorFilter(getResources().getColor(R.color.light_yellow));
+            binding.imageView12.setColorFilter(getResources().getColor(R.color.light_yellow));
+        }
         buttonUp = findViewById(R.id.btn_up);
         buttonDown = findViewById(R.id.btn_down);
         buttonLeft = findViewById(R.id.btn_left);

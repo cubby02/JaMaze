@@ -86,6 +86,8 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
 
     private ImageView questions_img;
 
+    private int star_layout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,110 +129,130 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
             txtLevel.setText("LEVEL 1");
             countdownValue = 20;
             easyAverageQuizData = QuestionAnswer.easyQuestions;
+            star_layout = R.layout.activity_congrats_2;
         }else if(counter == 1){
             title.setImageResource(R.drawable.easy_text);
             txtLevel.setText("LEVEL 2");
             countdownValue = 20;
             easyAverageQuizData = QuestionAnswer.easyQuestions;
+            star_layout = R.layout.activity_congrats_2;
         }else if(counter == 2){
             title.setImageResource(R.drawable.easy_text);
             txtLevel.setText("LEVEL 3");
             countdownValue = 20;
             easyAverageQuizData = QuestionAnswer.easyQuestions;
+            star_layout = R.layout.activity_congrats_2;
         }else if(counter == 3){
             title.setImageResource(R.drawable.easy_text);
             txtLevel.setText("LEVEL 4");
             countdownValue = 20;
             easyAverageQuizData = QuestionAnswer.easyQuestions;
+            star_layout = R.layout.activity_congrats_2;
         }else if(counter == 4){
             title.setImageResource(R.drawable.easy_text);
             txtLevel.setText("LEVEL 5");
             countdownValue = 20;
             easyAverageQuizData = QuestionAnswer.easyQuestions;
+            star_layout = R.layout.activity_congrats_2;
         }else if(counter == 5){
             title.setImageResource(R.drawable.average_text);
             txtLevel.setText("LEVEL 1");
             countdownValue = 30;
             easyAverageQuizData = QuestionAnswer.averageQuestions;
+            star_layout = R.layout.activity_congrats_3;
         }else if(counter == 6){
             title.setImageResource(R.drawable.average_text);
             txtLevel.setText("LEVEL 2");
             countdownValue = 30;
             easyAverageQuizData = QuestionAnswer.averageQuestions;
+            star_layout = R.layout.activity_congrats_3;
         }else if(counter == 7){
             title.setImageResource(R.drawable.average_text);
             txtLevel.setText("LEVEL 3");
             countdownValue = 30;
             easyAverageQuizData = QuestionAnswer.averageQuestions;
+            star_layout = R.layout.activity_congrats_3;
         }else if(counter == 8){
             title.setImageResource(R.drawable.average_text);
             txtLevel.setText("LEVEL 4");
             countdownValue = 30;
             easyAverageQuizData = QuestionAnswer.averageQuestions;
+            star_layout = R.layout.activity_congrats_3;
         }else if(counter == 9){
             title.setImageResource(R.drawable.average_text);
             txtLevel.setText("LEVEL 5");
             countdownValue = 30;
             easyAverageQuizData = QuestionAnswer.averageQuestions;
+            star_layout = R.layout.activity_congrats_3;
         }else if(counter == 10){
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 1");
             countdownValue = 40;
             hardQuizData = QuestionAnswer.hardQuestions;
             questions_img.setVisibility(View.VISIBLE);
+            star_layout = R.layout.activity_congrats_4;
         }else if(counter == 11){
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 2");
             countdownValue = 40;
             hardQuizData = QuestionAnswer.hardQuestions;
             questions_img.setVisibility(View.VISIBLE);
+            star_layout = R.layout.activity_congrats_4;
         }else if(counter == 12){
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 3");
             countdownValue = 40;
             questions_img.setVisibility(View.VISIBLE);
+            star_layout = R.layout.activity_congrats_4;
         }else if(counter == 13){
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 4");
             countdownValue = 40;
             hardQuizData = QuestionAnswer.hardQuestions;
             questions_img.setVisibility(View.VISIBLE);
+            star_layout = R.layout.activity_congrats_4;
         }else if(counter == 14){
             title.setImageResource(R.drawable.hard_text);
             txtLevel.setText("LEVEL 5");
             countdownValue = 40;
             hardQuizData = QuestionAnswer.hardQuestions;
             questions_img.setVisibility(View.VISIBLE);
+            star_layout = R.layout.activity_congrats_4;
         }else if(counter == 15){
             title.setImageResource(R.drawable.extreme_text);
             txtLevel.setText("LEVEL 1");
             countdownValue = 50;
             hardQuizData = QuestionAnswer.extremeQuestions;
             questions_img.setVisibility(View.VISIBLE);
+            star_layout = R.layout.activity_congrats_5;
         }else if(counter == 16){
             title.setImageResource(R.drawable.extreme_text);
             txtLevel.setText("LEVEL 2");
             countdownValue = 50;
             hardQuizData = QuestionAnswer.extremeQuestions;
             questions_img.setVisibility(View.VISIBLE);
+            star_layout = R.layout.activity_congrats_5;
         }else if(counter == 17){
             title.setImageResource(R.drawable.extreme_text);
             txtLevel.setText("LEVEL 3");
             countdownValue = 50;
             hardQuizData = QuestionAnswer.extremeQuestions;
             questions_img.setVisibility(View.VISIBLE);
+            star_layout = R.layout.activity_congrats_5;
         }else if(counter == 18){
             title.setImageResource(R.drawable.extreme_text);
             txtLevel.setText("LEVEL 4");
             countdownValue = 50;
             hardQuizData = QuestionAnswer.extremeQuestions;
             questions_img.setVisibility(View.VISIBLE);
+            star_layout = R.layout.activity_congrats_5;
         }else if(counter == 19){
             title.setImageResource(R.drawable.extreme_text);
             txtLevel.setText("LEVEL 5");
             countdownValue = 50;
             hardQuizData = QuestionAnswer.extremeQuestions;
             questions_img.setVisibility(View.VISIBLE);
+            star_layout = R.layout.activity_congrats_5;
         }
 
 
@@ -376,7 +398,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
-        dialog.setContentView(R.layout.activity_congrats_2);
+        dialog.setContentView(star_layout);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         Window window = dialog.getWindow();
         window.setLayout(RecyclerView.LayoutParams.MATCH_PARENT,RecyclerView.LayoutParams.MATCH_PARENT);

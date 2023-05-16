@@ -22,6 +22,8 @@ import com.example.test60.R;
 import com.example.test60.Utilities.DifficultiesAndLevels;
 import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.SoundPlayer;
+import com.example.test60.databinding.ActivityEasyLevel1Binding;
+import com.example.test60.databinding.ActivityEasyLevel3Binding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class EasyLevel3 extends AppCompatActivity {
@@ -42,7 +44,16 @@ public class EasyLevel3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_easy_level_3);
+        ActivityEasyLevel3Binding binding = ActivityEasyLevel3Binding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+
+        DifficultiesAndLevels gameProgress = new DifficultiesAndLevels(this);
+        if(gameProgress.isLevelUnlocked("easy4_unlocked")) {
+            binding.imageView9.setColorFilter(getResources().getColor(R.color.light_yellow));
+        }
+
+
 
         sound = ((GlobalApplication) getApplication()).getSoundPlayer();
         chartt= findViewById(R.id.chartt);

@@ -22,6 +22,8 @@ import com.example.test60.R;
 import com.example.test60.Utilities.DifficultiesAndLevels;
 import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.SoundPlayer;
+import com.example.test60.databinding.ActivityHardLevel1Binding;
+import com.example.test60.databinding.ActivityHardLevel2Binding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class HardLevel2 extends AppCompatActivity {
@@ -40,7 +42,16 @@ public class HardLevel2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hard_level_2);
+        ActivityHardLevel2Binding binding = ActivityHardLevel2Binding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+
+        DifficultiesAndLevels gameProgress = new DifficultiesAndLevels(this);
+        if(gameProgress.isLevelUnlocked("hard3_unlocked")) {
+            binding.imageView9.setColorFilter(getResources().getColor(R.color.light_yellow));
+            binding.imageView10.setColorFilter(getResources().getColor(R.color.light_yellow));
+            binding.imageView11.setColorFilter(getResources().getColor(R.color.light_yellow));
+        }
         buttonUp = findViewById(R.id.btn_up);
         buttonDown = findViewById(R.id.btn_down);
         buttonLeft = findViewById(R.id.btn_left);

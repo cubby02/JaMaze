@@ -25,6 +25,7 @@ import com.example.test60.Utilities.DifficultiesAndLevels;
 import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.MusicService;
 import com.example.test60.Utilities.SoundPlayer;
+import com.example.test60.databinding.ActivityEasyLevel1Binding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class EasyLevel1 extends AppCompatActivity {
@@ -38,18 +39,24 @@ public class EasyLevel1 extends AppCompatActivity {
 
     Button btnReset, home;
     private boolean gameEnded = false;
-    private DifficultiesAndLevels gameProgress;
 
     private SoundPlayer sound;
-
 
     @SuppressLint("ClickableViewAccessibility") //eto yung i-ccopy per level sa mga activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_easy_level_1);
-        sound = ((GlobalApplication) getApplication()).getSoundPlayer();
 
+        ActivityEasyLevel1Binding binding = ActivityEasyLevel1Binding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+
+        DifficultiesAndLevels gameProgress = new DifficultiesAndLevels(this);
+        if(gameProgress.isLevelUnlocked("easy2_unlocked")) {
+            binding.imageView9.setColorFilter(getResources().getColor(R.color.light_yellow));
+        }
+
+        sound = ((GlobalApplication) getApplication()).getSoundPlayer();
         buttonUp = findViewById(R.id.btn_up);
         buttonDown = findViewById(R.id.btn_down);
         buttonLeft = findViewById(R.id.btn_left);
