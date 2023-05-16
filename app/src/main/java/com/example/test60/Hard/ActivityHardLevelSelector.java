@@ -13,16 +13,21 @@ import com.example.test60.R;
 import com.example.test60.Utilities.DifficultiesAndLevels;
 import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.SoundPlayer;
+import com.example.test60.databinding.ActivityEasyLevelSelectorBinding;
+import com.example.test60.databinding.ActivityHardLevelSelectorBinding;
 
 public class ActivityHardLevelSelector extends AppCompatActivity {
     ImageButton imgButton;
     public SoundPlayer sound;
     private DifficultiesAndLevels gameProgress;
 
+    private ActivityHardLevelSelectorBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hard_level_selector);
+        binding = ActivityHardLevelSelectorBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         gameProgress = new DifficultiesAndLevels(this);
         sound = ((GlobalApplication) getApplication()).getSoundPlayer();
         SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
@@ -56,6 +61,7 @@ public class ActivityHardLevelSelector extends AppCompatActivity {
 
         }else {
             imgButton.setImageResource(R.drawable.btn_lvl_2); // Set the locked image
+            binding.linearLayout6.setVisibility(View.VISIBLE);
         }
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +82,7 @@ public class ActivityHardLevelSelector extends AppCompatActivity {
 
         }else {
             imgButton.setImageResource(R.drawable.btn_lvl_3); // Set the locked image
+            binding.linearLayout7.setVisibility(View.VISIBLE);
         }
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +103,7 @@ public class ActivityHardLevelSelector extends AppCompatActivity {
 
         }else {
             imgButton.setImageResource(R.drawable.btn_lvl_4); // Set the locked image
+            binding.linearLayout8.setVisibility(View.VISIBLE);
         }
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +124,12 @@ public class ActivityHardLevelSelector extends AppCompatActivity {
 
         }else {
             imgButton.setImageResource(R.drawable.btn_lvl_5); // Set the locked image
+            binding.linearLayout9.setVisibility(View.VISIBLE);
+        }
+
+        if(gameProgress.isLevelUnlocked("extreme1_unlocked")) {
+            binding.linearLayout10.setVisibility(View.VISIBLE);
+
         }
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override

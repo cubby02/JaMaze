@@ -29,6 +29,7 @@ import com.example.test60.Average.AverageLevel2;
 import com.example.test60.Average.AverageLevel3;
 import com.example.test60.Average.AverageLevel4;
 import com.example.test60.Average.AverageLevel5;
+import com.example.test60.Extreme.ActivityExtremeLevelSelector;
 import com.example.test60.Hard.HardLevel1;
 import com.example.test60.Hard.HardLevel2;
 import com.example.test60.Hard.HardLevel3;
@@ -204,22 +205,32 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
             title.setImageResource(R.drawable.extreme_text);
             txtLevel.setText("LEVEL 1");
             countdownValue = 50;
+            hardQuizData = QuestionAnswer.extremeQuestions;
+            questions_img.setVisibility(View.VISIBLE);
         }else if(counter == 16){
             title.setImageResource(R.drawable.extreme_text);
             txtLevel.setText("LEVEL 2");
             countdownValue = 50;
+            hardQuizData = QuestionAnswer.extremeQuestions;
+            questions_img.setVisibility(View.VISIBLE);
         }else if(counter == 17){
             title.setImageResource(R.drawable.extreme_text);
             txtLevel.setText("LEVEL 3");
             countdownValue = 50;
+            hardQuizData = QuestionAnswer.extremeQuestions;
+            questions_img.setVisibility(View.VISIBLE);
         }else if(counter == 18){
             title.setImageResource(R.drawable.extreme_text);
             txtLevel.setText("LEVEL 4");
             countdownValue = 50;
+            hardQuizData = QuestionAnswer.extremeQuestions;
+            questions_img.setVisibility(View.VISIBLE);
         }else if(counter == 19){
             title.setImageResource(R.drawable.extreme_text);
             txtLevel.setText("LEVEL 5");
             countdownValue = 50;
+            hardQuizData = QuestionAnswer.extremeQuestions;
+            questions_img.setVisibility(View.VISIBLE);
         }
 
 
@@ -434,7 +445,7 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
             gameProgress.unlockLevel("extreme5_unlocked");
         }
         else if(counter ==19){
-
+            gameProgress.gameComplete("game_completed");
         }
         else if(counter ==20){
 
@@ -528,8 +539,11 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
                         Intent intent = new Intent(getApplicationContext(), ExtremeLevel5.class);
                         startActivity(intent);
                     }else if(counter==19){
-                        Intent intent = new Intent(getApplicationContext(), ActivityEasyLevelSelector.class);
+
+                        Intent intent = new Intent(getApplicationContext(), ActivityExtremeLevelSelector.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
+
                     }
                 }else if(diff.equals(null)){
                     Intent intent = new Intent(getApplicationContext(), ActivitySelectDifficulty.class);

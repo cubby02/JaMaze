@@ -1,6 +1,8 @@
 package com.example.test60.Easy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,15 +14,20 @@ import com.example.test60.R;
 import com.example.test60.Utilities.DifficultiesAndLevels;
 import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.SoundPlayer;
+import com.example.test60.databinding.ActivityEasyLevelSelectorBinding;
 
 public class ActivityEasyLevelSelector extends AppCompatActivity {
     ImageButton imgButton;
     public SoundPlayer sound;
     private DifficultiesAndLevels gameProgress;
+
+    private ActivityEasyLevelSelectorBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_easy_level_selector);
+        binding = ActivityEasyLevelSelectorBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
 
         sound = ((GlobalApplication) getApplication()).getSoundPlayer();
         SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
@@ -42,6 +49,7 @@ public class ActivityEasyLevelSelector extends AppCompatActivity {
                 startActivity(intentLoadNewActivity);
             }
         });
+
         ImageButton lvl2btn = findViewById(R.id.imageButton9);
         gameProgress = new DifficultiesAndLevels(this);
         if(!gameProgress.isLevelUnlocked("easy2_unlocked")) {
@@ -49,7 +57,7 @@ public class ActivityEasyLevelSelector extends AppCompatActivity {
 
         }else if(gameProgress.isLevelUnlocked("easy2_unlocked")) {
             lvl2btn.setImageResource(R.drawable.btn_lvl_2); // Set the locked image
-
+            binding.linearLayout6.setVisibility(View.VISIBLE);
         }
         lvl2btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +79,7 @@ public class ActivityEasyLevelSelector extends AppCompatActivity {
 
         }else {
             imgButton.setImageResource(R.drawable.btn_lvl_3); // Set the locked image
+            binding.linearLayout7.setVisibility(View.VISIBLE);
         }
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,12 +94,14 @@ public class ActivityEasyLevelSelector extends AppCompatActivity {
                 startActivity(intentLoadNewActivity);
             }
         });
+
         imgButton = (ImageButton) findViewById(R.id.imageButton11);
         if(!gameProgress.isLevelUnlocked("easy4_unlocked")) {
             imgButton.setEnabled(false); // Disable the button if the difficulty is locked
 
         }else {
             imgButton.setImageResource(R.drawable.btn_lvl_4); // Set the locked image
+            binding.linearLayout8.setVisibility(View.VISIBLE);
         }
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +122,13 @@ public class ActivityEasyLevelSelector extends AppCompatActivity {
 
         }else {
             imgButton.setImageResource(R.drawable.btn_lvl_5); // Set the locked image
+            binding.linearLayout9.setVisibility(View.VISIBLE);
         }
+
+        if(gameProgress.isLevelUnlocked("average1_unlocked")) {
+            binding.linearLayout10.setVisibility(View.VISIBLE);
+        }
+
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

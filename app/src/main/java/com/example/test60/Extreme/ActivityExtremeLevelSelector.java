@@ -14,15 +14,19 @@ import com.example.test60.R;
 import com.example.test60.Utilities.DifficultiesAndLevels;
 import com.example.test60.Utilities.GlobalApplication;
 import com.example.test60.Utilities.SoundPlayer;
+import com.example.test60.databinding.ActivityEasyLevelSelectorBinding;
+import com.example.test60.databinding.ActivityExtremeSelectorBinding;
 
 public class ActivityExtremeLevelSelector extends AppCompatActivity {
     ImageButton imgButton;
     public SoundPlayer sound;
     private DifficultiesAndLevels gameProgress;
+    private ActivityExtremeSelectorBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_extreme_selector);
+        binding = ActivityExtremeSelectorBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         gameProgress = new DifficultiesAndLevels(this);
         sound = ((GlobalApplication) getApplication()).getSoundPlayer();
         SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
@@ -54,8 +58,10 @@ public class ActivityExtremeLevelSelector extends AppCompatActivity {
         if(!gameProgress.isLevelUnlocked("extreme2_unlocked")) {
             imgButton.setEnabled(false); // Disable the button if the difficulty is locked
 
+
         }else {
             imgButton.setImageResource(R.drawable.btn_lvl_2); // Set the locked image
+            binding.linearLayout6.setVisibility(View.VISIBLE);
         }
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +82,7 @@ public class ActivityExtremeLevelSelector extends AppCompatActivity {
 
         }else {
             imgButton.setImageResource(R.drawable.btn_lvl_3); // Set the locked image
+            binding.linearLayout7.setVisibility(View.VISIBLE);
         }
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +103,7 @@ public class ActivityExtremeLevelSelector extends AppCompatActivity {
 
         }else {
             imgButton.setImageResource(R.drawable.btn_lvl_4); // Set the locked image
+            binding.linearLayout8.setVisibility(View.VISIBLE);
         }
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,7 +124,13 @@ public class ActivityExtremeLevelSelector extends AppCompatActivity {
 
         }else {
             imgButton.setImageResource(R.drawable.btn_lvl_5); // Set the locked image
+            binding.linearLayout9.setVisibility(View.VISIBLE);
         }
+
+        if(gameProgress.isGameComplete("game_completed")){
+            binding.linearLayout10.setVisibility(View.VISIBLE);
+        }
+
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

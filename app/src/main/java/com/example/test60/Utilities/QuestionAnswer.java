@@ -144,4 +144,23 @@ public class QuestionAnswer {
     };
 
 
+    public static HardQuestions[] extremeQuestions = {
+            new HardQuestions("Fill in the blank to make a Java Conversion:", R.drawable.e1, "ts=new Timestamp", "ts new timestamp", "timestamp = new timestamp", "time new stamp ="),
+            new HardQuestions("Fill in the Blank to find Reverse of the string.", R.drawable.e2, "string.length", "Reversedstr.length", "String.lenght", "reversedStr.lenght"),
+            new HardQuestions("Fill in the blank to transpose matrix", R.drawable.e3, "original[j][i];", "Original[j][i];", "origimal[i]j];", "original[j][i]:"),
+            new HardQuestions("Fill in the blank to Convert char into int", R.drawable.e4, "a Character.getNumericValue", "a=charavter.Getnumricvalue", "a-Character.getnumericvalue", "a character.GetNumericValue"),
+            new HardQuestions("Fill in the blank to print odd and even numbers from an array", R.drawable.e5, "(a[i]%2!=0)", "(a[i]%2+=0)", "(a[i]%2==0)", "(a[i]%2/=0)"),
+
+            new HardQuestions("Fill in the blank to convert long to String", R.drawable.e6, "String.valueOf", "String.valueOF", "string.valueOf", "String.valueOF"),
+            new HardQuestions("Fill in the blank to generate a random number", R.drawable.e7, "Math.random", "Num.random", "math.Random", "num.rdm"),
+            new HardQuestions("Fill in the blank to print the largest element in an array", R.drawable.e8, "arr[i]> max", "arr{i} = max", "max[i] < arr", "arr[i] / max"),
+            new HardQuestions("Fill in the blank to create a program that converts octal to decimal.", R.drawable.e9, "Int.ParseInt", "integer. Paserint", "int.prsInt", "Integer.parseInt"),
+            new HardQuestions("Fill in the blank to create a program that converts Hexadecimal to Decimal", R.drawable.e10, "hex.length", "Hex. Lenght", "hex. Lenght", "Hex. lenght"),
+
+            new HardQuestions("Fill in the blank to convert float to String", R.drawable.e13, "String.valueOf(f);", "string.ValueOf(f);", "String.ValueOf(f);", "string.valueOf(f);"),
+            new HardQuestions("Fill in the blank to convert Binary to Decimal", R.drawable.e14, "decimal-Integer.parseInt", "Decimal. Interger.ParseInt", "decimal=int.parseInt", "Decimal-Interger.parseInt"),
+            new HardQuestions("Fill in the blank to create a program that makes patterns", R.drawable.e15, "i=1;i<=lines;i++", "i=1;i>-lines;i++", "i=1;i</lines;i++", "i=1;i<-lines; i--")
+    };
+
+
 }

@@ -34,7 +34,7 @@ public class DifficultiesAndLevels {
         editor.putBoolean("extreme3_unlocked", true);
         editor.putBoolean("extreme4_unlocked", true);
         editor.putBoolean("extreme5_unlocked", true);
-
+        editor.putBoolean("game_completed", true);
 
 
 
@@ -42,11 +42,22 @@ public class DifficultiesAndLevels {
         editor.apply();
     }
 
+
+
+    public boolean isGameComplete(String level){
+        return preferences.getBoolean(level, false);
+    }
+
     public boolean isLevelUnlocked(String level) {
         return preferences.getBoolean(level, false);
     }
 
     public void unlockLevel(String level) {
+        editor.putBoolean(level, true);
+        editor.apply();
+    }
+
+    public void gameComplete(String level) {
         editor.putBoolean(level, true);
         editor.apply();
     }
