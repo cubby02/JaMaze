@@ -265,7 +265,7 @@ public class ExtremeLevel3 extends AppCompatActivity {
 
             int yellowThreshold = 70;
             int blackThreshold = 70;
-            int whiteThreshold = 200;
+            int whiteThreshold = 10;
 
             if (red >= yellowThreshold && green >= yellowThreshold && blue < yellowThreshold) {
                 if (!gameEnded) {
