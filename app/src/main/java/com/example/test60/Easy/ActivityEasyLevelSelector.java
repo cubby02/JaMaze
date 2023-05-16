@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.test60.Average.ActivityAverageLevelSelector;
 import com.example.test60.Menu.ActivitySelectDifficulty;
 import com.example.test60.R;
 import com.example.test60.Utilities.DifficultiesAndLevels;
@@ -147,7 +148,9 @@ public class ActivityEasyLevelSelector extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        Intent intent = new Intent(getApplicationContext(), ActivitySelectDifficulty.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
 }
