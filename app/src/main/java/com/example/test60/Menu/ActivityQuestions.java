@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.CountDownTimer;
 
+import com.example.test60.Average.ActivityAverageLevelSelector;
 import com.example.test60.Easy.ActivityEasyLevelSelector;
 import com.example.test60.Easy.EasyLevel3;
 import com.example.test60.Easy.EasyLevel4;
@@ -30,6 +31,7 @@ import com.example.test60.Average.AverageLevel3;
 import com.example.test60.Average.AverageLevel4;
 import com.example.test60.Average.AverageLevel5;
 import com.example.test60.Extreme.ActivityExtremeLevelSelector;
+import com.example.test60.Hard.ActivityHardLevelSelector;
 import com.example.test60.Hard.HardLevel1;
 import com.example.test60.Hard.HardLevel2;
 import com.example.test60.Hard.HardLevel3;
@@ -603,6 +605,31 @@ public class ActivityQuestions extends AppCompatActivity implements View.OnClick
             @Override
             public void onClick(View view) {
                 sound.playClick();
+
+
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("level", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+
+                String diff = pref.getString("diff", null);
+
+                if(diff.trim().equals("easy")){
+                    Intent intent = new Intent(getApplicationContext(), ActivityEasyLevelSelector.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }else if(diff.trim().equals("average")){
+                    Intent intent = new Intent(getApplicationContext(), ActivityAverageLevelSelector.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }else if(diff.trim().equals("hard")){
+                    Intent intent = new Intent(getApplicationContext(), ActivityHardLevelSelector.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }else if(diff.trim().equals("extreme")){
+                    Intent intent = new Intent(getApplicationContext(), ActivityExtremeLevelSelector.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+
                 finish();
             }
         });
