@@ -30,12 +30,12 @@ public class DifficultiesAndLevels {
         editor.putBoolean("hard3_unlocked", preferences.getBoolean("hard3_unlocked", false));
         editor.putBoolean("hard4_unlocked", preferences.getBoolean("hard4_unlocked", false));
         editor.putBoolean("hard5_unlocked", preferences.getBoolean("hard5_unlocked", false));
-        editor.putBoolean("hard5_unlocked", preferences.getBoolean("extreme1", false));
-        editor.putBoolean("hard5_unlocked", preferences.getBoolean("extreme2", false));
-        editor.putBoolean("hard5_unlocked", preferences.getBoolean("extreme3", false));
-        editor.putBoolean("hard5_unlocked", preferences.getBoolean("extreme4", false));
-        editor.putBoolean("hard5_unlocked", preferences.getBoolean("extreme5", false));
-
+        editor.putBoolean("extreme1_unlocked", preferences.getBoolean("extreme1", false));
+        editor.putBoolean("extreme2_unlocked", preferences.getBoolean("extreme2", false));
+        editor.putBoolean("extreme3_unlocked", preferences.getBoolean("extreme3", false));
+        editor.putBoolean("extreme4_unlocked", preferences.getBoolean("extreme4", false));
+        editor.putBoolean("extreme5_unlocked", preferences.getBoolean("extreme5", false));
+        editor.putBoolean("game_completed", preferences.getBoolean("game_completed",false));
 
 
         // Commit the changes to the SharedPreferences
