@@ -36,6 +36,7 @@ public class ActivitySelectDifficulty extends AppCompatActivity {
             public void onClick(View v) {
                 if (gameProgress.isLevelUnlocked("easy1_unlocked")) {
                     // Level is unlocked, start EasyLevelSelector activity
+                    sound.playClick();
                     Intent intent = new Intent(ActivitySelectDifficulty.this, ActivityEasyLevelSelector.class);
                     startActivity(intent);
                 }else {
@@ -70,6 +71,7 @@ public class ActivitySelectDifficulty extends AppCompatActivity {
             public void onClick(View v) {
                 if (gameProgress.isLevelUnlocked("average1_unlocked")) {
                     // Level is unlocked, start EasyLevelSelector activity
+                    sound.playClick();
                     Intent intent = new Intent(ActivitySelectDifficulty.this, ActivityAverageLevelSelector.class);
                     startActivity(intent);
                 }else {
@@ -82,6 +84,7 @@ public class ActivitySelectDifficulty extends AppCompatActivity {
             public void onClick(View v) {
                 if (gameProgress.isLevelUnlocked("hard1_unlocked")) {
                     // Level is unlocked, start EasyLevelSelector activity
+                    sound.playClick();
                     Intent intent = new Intent(ActivitySelectDifficulty.this, ActivityHardLevelSelector.class);
                     startActivity(intent);
                 }else {
@@ -94,6 +97,7 @@ public class ActivitySelectDifficulty extends AppCompatActivity {
             public void onClick(View v) {
                 if (gameProgress.isLevelUnlocked("extreme1_unlocked")) {
                     // Level is unlocked, start EasyLevelSelector activity
+                    sound.playClick();
                     Intent intent = new Intent(ActivitySelectDifficulty.this, ActivityExtremeLevelSelector.class);
                     startActivity(intent);
                 }else {
