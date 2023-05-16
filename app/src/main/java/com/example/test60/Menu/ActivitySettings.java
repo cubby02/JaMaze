@@ -11,6 +11,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -57,6 +58,7 @@ public class ActivitySettings extends AppCompatActivity {
             MusicService.MyBinder myBinder = (MusicService.MyBinder) iBinder;
             myService = myBinder.getService();
             isBound = true;
+            Log.e("Service Connected", "onServiceConnected: " + isBound );
         }
 
         @Override
@@ -73,8 +75,8 @@ public class ActivitySettings extends AppCompatActivity {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
 
-        Intent intent = new Intent(this, MusicService.class);
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+
+
 
         f1 = findViewById(R.id.charfemale1);
         f2 = findViewById(R.id.charfemale2);
@@ -162,16 +164,12 @@ public class ActivitySettings extends AppCompatActivity {
 
         // Retrieve the saved volume from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
-        float selectedVolume = sharedPreferences.getFloat("selectedVolume", defaultVolume);
 
-
-        if (!Float.isNaN(selectedVolume)) {
-            currentVolume = selectedVolume;
-        } else {
-            currentVolume = defaultVolume;
-        }
+        currentVolume = sharedPreferences.getFloat("selectedVolume", defaultVolume);
 
         musiBar.setProgress((int)(currentVolume / maxVolume * 100));
+
+
 
         if (isBound) {
             MediaPlayer mediaPlayer = myService.getMediaPlayer();
@@ -256,6 +254,7 @@ public class ActivitySettings extends AppCompatActivity {
         });
 
         }
+
 
     @Override
     protected void onDestroy() {

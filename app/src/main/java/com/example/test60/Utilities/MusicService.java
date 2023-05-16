@@ -2,6 +2,7 @@ package com.example.test60.Utilities;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
@@ -14,10 +15,18 @@ public class MusicService extends Service {
 
     private MediaPlayer mediaPlayer;
 
+    final float defaultVolume = 0.5f;
+    float currentVolume;
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         mediaPlayer = MediaPlayer.create(this, R.raw.bgm4);
         mediaPlayer.setLooping(true);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        currentVolume = sharedPreferences.getFloat("selectedVolume", defaultVolume);
+
+        mediaPlayer.setVolume(currentVolume, currentVolume);
         mediaPlayer.start();
         return START_STICKY;
     }

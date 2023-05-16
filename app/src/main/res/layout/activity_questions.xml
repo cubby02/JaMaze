@@ -119,6 +119,7 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:textAllCaps="false"
                     android:id="@+id/ans1"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -129,6 +130,7 @@
                     android:textColor="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:textAllCaps="false"
                     android:id="@+id/ans2"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -150,6 +152,7 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:textAllCaps="false"
                     android:id="@+id/ans3"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -160,6 +163,7 @@
                     android:textColor="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:textAllCaps="false"
                     android:id="@+id/ans4"
                     android:layout_width="0dp"
                     android:layout_weight="1"

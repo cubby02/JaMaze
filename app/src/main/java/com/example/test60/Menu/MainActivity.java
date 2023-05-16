@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.test60.R;
 import com.example.test60.Utilities.GlobalApplication;
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+
+
         imgButton = (ImageButton) findViewById(R.id.imageButton);
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
         stopService(new Intent(this, MusicService.class));
     }
+
 
     @Override
     public void onBackPressed() {
